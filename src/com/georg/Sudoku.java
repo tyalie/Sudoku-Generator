@@ -1,4 +1,6 @@
-package com.georg.Generator;
+package com.georg;
+
+import com.georg.Generator.Level;
 
 /**
  * Created by Georg on 30/05/16.
@@ -12,11 +14,11 @@ public class Sudoku {
      */
     private byte[] field;
 
-    public byte getIndex(int x, int y) {
+    public byte getAtIndex(int x, int y) {
         return field[x+9*y];
     }
 
-    public byte getIndex(int c1, int r1, int c2, int r2) {
+    public byte getAtIndex(int c1, int r1, int c2, int r2) {
         return field[c1*3 + r1*27 + c2 + r2*9];
     }
 

@@ -1,7 +1,6 @@
 package com.georg;
 
 import com.georg.Generator.Level;
-import com.georg.Generator.Sudoku;
 import com.georg.Generator.SudokuSolver;
 
 public class Main {
