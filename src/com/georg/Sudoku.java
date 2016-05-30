@@ -6,13 +6,19 @@ import com.georg.Generator.Level;
  * Created by Georg on 30/05/16.
  */
 public class Sudoku {
+    public static final int FIELD_SIZE = 9;
+    public static final int BLOCK_SIZE = 3;
+    public static final int MAX_NUM = 9;
+
+    public static final int NAN = -1;
+
     private Level hardness;
     /* 0. row
        1. column
        2. row
        3. column
      */
-    private byte[] field;
+    protected byte[] field;
 
     public byte getAtIndex(int x, int y) {
         return field[x+9*y];
@@ -46,13 +52,21 @@ public class Sudoku {
     public String toString() {
         String out = "";
         for (int i=0; i<81; i++) {
-            out+=field[i];
-            if(i%9==0)
-                out+='\n';
-            if(i%3==0)
-                out+="|";
-            if(i%27==0)
-                out+="---|---|---";
+            if(i!=0) {
+                if (i % 27 == 0)
+                    out += "\n-------|-------|-------\n";
+                else if (i % 9 == 0)
+                    out += "\n";
+                else if (i % 3 == 0)
+                    out += " |";
+            }
+            out+=" ";
+
+
+            if(field[i]!=NAN)
+                out+=field[i];
+            else
+                out+=" ";
         }
 
         return out;
