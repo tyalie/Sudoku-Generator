@@ -1,6 +1,6 @@
 package com.georg;
 
-import com.georg.Generator.Level;
+import java.util.Arrays;
 
 /**
  * Created by Georg on 30/05/16.
@@ -24,8 +24,8 @@ public class Sudoku {
         return field[x+9*y];
     }
 
-    public byte getAtIndex(int c1, int r1, int c2, int r2) {
-        return field[c1*3 + r1*27 + c2 + r2*9];
+    public byte getAtIndex(int i) {
+        return field[i];
     }
 
     public Sudoku(Level l, byte[] field) throws RuntimeException{
@@ -38,6 +38,7 @@ public class Sudoku {
     public Sudoku(Level l) {
         hardness = l;
         this.field = new byte[81];
+        Arrays.fill(this.field, (byte)-1);
     }
 
     public Level getHardness() {

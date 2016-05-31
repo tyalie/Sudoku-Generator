@@ -1,10 +1,8 @@
 package com.georg;
 
 import com.georg.Generator.CompSudoku;
-import com.georg.Generator.Level;
+import com.georg.Generator.LasVegasAlgorithm;
 import com.georg.Generator.SudokuSolver;
-
-import java.util.List;
 
 public class Main {
 
@@ -36,8 +34,9 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-        testSolver();
+       // testSolver();
        // testCompSudoku();
+        testLasVegasAlgorithm();
     }
 
     private static void testSolver() {
@@ -48,10 +47,16 @@ public class Main {
 
     private static void testCompSudoku() {
         CompSudoku c = new CompSudoku(testCase2);
-        //c.moveNext();
-        //System.out.println(c.toString()+"\n\n");
+        c.moveNext();
+        System.out.println(c.toString()+"\n\n");
 
-        //for(CompSudoku e : c.expand())
-        //    System.out.println(e.toString()+"\n\n");
+        for(CompSudoku e : c.expand())
+            System.out.println(e.toString()+"\n\n");
+    }
+
+    private static void testLasVegasAlgorithm() {
+        Sudoku su = LasVegasAlgorithm.LasVegas(Level.Easy);
+        assert su!=null;
+        System.out.println(su.toString());
     }
 }

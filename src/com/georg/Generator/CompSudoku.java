@@ -1,5 +1,6 @@
 package com.georg.Generator;
 
+import com.georg.Level;
 import com.georg.Sudoku;
 
 import java.util.ArrayList;
@@ -29,6 +30,10 @@ public class CompSudoku extends Sudoku {
         index = su.index;
     }
 
+    public int getAtIndex() {
+        return field[index];
+    }
+
     public int getIndex() {
         return index;
     }
@@ -44,7 +49,7 @@ public class CompSudoku extends Sudoku {
     }
 
     public boolean isIndexLast() {
-        for (int i = index; i < 81; i++) {
+        for (int i = index; i < FIELD_SIZE*FIELD_SIZE; i++) {
             if(field[i]==NAN)
                 return false;
         }
@@ -58,12 +63,17 @@ public class CompSudoku extends Sudoku {
     }
 
     public void resetIndex() {
-        index = 0;
+        index=0;
+        moveNext();
     }
 
     public void moveIndexReverse() {
         if(index>0)
             index--;
+    }
+
+    public void setField(byte n) {
+        field[index] = n;
     }
 
     public void addSecureByte(byte in) {
@@ -85,6 +95,19 @@ public class CompSudoku extends Sudoku {
                 c.addSecureByte(i);
                 ret.add(c);
             }
+        }
+        return ret;
+    }
+
+    public List<Byte> getAvailable() {
+        Boolean[] possible = new Boolean[MAX_NUM];
+        Arrays.fill(possible, true);
+        possible = rule_3(rule_2(rule_1(possible)));
+
+        List<Byte> ret = new ArrayList<>();
+        for(byte i=1; i<= MAX_NUM; i++) {
+            if(possible[i-1])
+                ret.add(i);
         }
         return ret;
     }

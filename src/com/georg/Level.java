@@ -1,4 +1,4 @@
-package com.georg.Generator;
+package com.georg;
 
 /**
  * Created by Georg on 30/05/16.
