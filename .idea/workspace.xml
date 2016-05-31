@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="64da151d-c18d-42ed-9992-418fd366d48c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Sudoku Summative/com/georg/Generator/SudokuSolver.class" afterPath="$PROJECT_DIR$/out/production/Sudoku Summative/com/georg/Generator/SudokuSolver.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Sudoku Summative/com/georg/Main.class" afterPath="$PROJECT_DIR$/out/production/Sudoku Summative/com/georg/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/georg/Generator/CompSudoku.java" afterPath="$PROJECT_DIR$/src/com/georg/Generator/CompSudoku.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/georg/Generator/SudokuSolver.java" afterPath="$PROJECT_DIR$/src/com/georg/Generator/SudokuSolver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/georg/Main.java" afterPath="$PROJECT_DIR$/src/com/georg/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/georg/Sudoku.java" afterPath="$PROJECT_DIR$/src/com/georg/Sudoku.java" />
-    </list>
+    <list default="true" id="64da151d-c18d-42ed-9992-418fd366d48c" name="Default" comment="" />
     <ignored path="Sudoku Summative.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -96,6 +88,7 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
+        <option value="gansgar &lt;ansgar.f26@gmail.com&gt;" />
         <option value="Georg Friedrich" />
       </list>
     </option>
@@ -546,7 +539,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1464622533168</updated>
-      <workItem from="1464641368758" duration="6874000" />
+      <workItem from="1464641368758" duration="7275000" />
     </task>
     <task id="LOCAL-00001" summary="- created Git project&#10;- created basic class structure&#10;- added test method for SudokuSolver in Main.java">
       <created>1464639960408</created>
@@ -562,11 +555,18 @@
       <option name="project" value="LOCAL" />
       <updated>1464641157520</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="- implemented full depth-first search (DFS) algorithm for the sudokus &#10;- added tester for CompSudoku&#10;- added computational sudoku class (CompSudoku)">
+      <created>1464651711014</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1464651711014</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6874000" />
+    <option name="totallyTimeSpent" value="7275000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -579,7 +579,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -643,7 +643,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="- created Git project&#10;- created basic class structure&#10;- added test method for SudokuSolver in Main.java" />
     <MESSAGE value="- created CompSudoku" />
-    <option name="LAST_COMMIT_MESSAGE" value="- created CompSudoku" />
+    <MESSAGE value="- implemented full depth-first search (DFS) algorithm for the sudokus &#10;- added tester for CompSudoku&#10;- added computational sudoku class (CompSudoku)" />
+    <option name="LAST_COMMIT_MESSAGE" value="- implemented full depth-first search (DFS) algorithm for the sudokus &#10;- added tester for CompSudoku&#10;- added computational sudoku class (CompSudoku)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
