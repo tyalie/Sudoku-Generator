@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="64da151d-c18d-42ed-9992-418fd366d48c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/it_unimi_dsi_dsiutils_2_3_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/georg/Generator/LasVegasAlgorithm.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/georg/Generator/Level.java" afterPath="$PROJECT_DIR$/src/com/georg/Level.java" />
+    <list default="true" id="64da151d-c18d-42ed-9992-418fd366d48c" name="Default" comment="- implemented generator for easy and extremly easy&#10;- added some more comments&#10;- added some more information provided by Level enum&#10;- added more variables and edited some function for better sudoku style flexibility&#10;- tester method in Main for SudokuGen&#10;- added class that for easier use of SudokuGen (StaticGenerator)&#10;- added class to improve performance on boolean array (CanBeDugList)">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/Georg.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/georg/Generator/CanBeDugList.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/georg/Generator/StaticGenerator.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Sudoku Summative/com/georg/Generator/Level.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Questions/SodokuCreateAlgo.pdf" afterPath="$PROJECT_DIR$/Questions/SodokuCreateAlgo.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Sudoku Summative/com/georg/Generator/CompSudoku.class" afterPath="$PROJECT_DIR$/out/production/Sudoku Summative/com/georg/Generator/CompSudoku.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Sudoku Summative/com/georg/Generator/SudokuGen.class" afterPath="$PROJECT_DIR$/out/production/Sudoku Summative/com/georg/Generator/SudokuGen.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Sudoku Summative/com/georg/Generator/SudokuSolver.class" afterPath="$PROJECT_DIR$/out/production/Sudoku Summative/com/georg/Generator/SudokuSolver.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Sudoku Summative/com/georg/Main.class" afterPath="$PROJECT_DIR$/out/production/Sudoku Summative/com/georg/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Sudoku Summative/com/georg/Sudoku.class" afterPath="$PROJECT_DIR$/out/production/Sudoku Summative/com/georg/Sudoku.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sudoku Summative.iml" afterPath="$PROJECT_DIR$/Sudoku Summative.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/georg/Generator/CompSudoku.java" afterPath="$PROJECT_DIR$/src/com/georg/Generator/CompSudoku.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/georg/Generator/LasVegasAlgorithm.java" afterPath="$PROJECT_DIR$/src/com/georg/Generator/LasVegasAlgorithm.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/georg/Generator/SudokuGen.java" afterPath="$PROJECT_DIR$/src/com/georg/Generator/SudokuGen.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/georg/Generator/SudokuSolver.java" afterPath="$PROJECT_DIR$/src/com/georg/Generator/SudokuSolver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/georg/Level.java" afterPath="$PROJECT_DIR$/src/com/georg/Level.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/georg/Main.java" afterPath="$PROJECT_DIR$/src/com/georg/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/georg/Sudoku.java" afterPath="$PROJECT_DIR$/src/com/georg/Sudoku.java" />
     </list>
@@ -37,37 +42,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/georg/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SudokuSolver.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/georg/Generator/SudokuSolver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
-              <caret line="80" column="41" selection-start-line="80" selection-start-column="41" selection-end-line="80" selection-end-column="41" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#780#781#0" expanded="true" />
-                <element signature="e#841#842#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LasVegasAlgorithm.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/georg/Generator/LasVegasAlgorithm.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="472">
-              <caret line="39" column="57" selection-start-line="39" selection-start-column="57" selection-end-line="39" selection-end-column="57" />
+            <state relative-caret-position="142">
+              <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -78,9 +57,27 @@
       <file leaf-file-name="SudokuGen.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/georg/Generator/SudokuGen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="375">
+              <caret line="117" column="26" selection-start-line="117" selection-start-column="26" selection-end-line="117" selection-end-column="26" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3861#3862#0" expanded="true" />
+                <element signature="e#3890#3891#0" expanded="true" />
+                <element signature="e#3924#3925#0" expanded="true" />
+                <element signature="e#3953#3954#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StaticGenerator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/georg/Generator/StaticGenerator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="42" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -88,19 +85,45 @@
       <file leaf-file-name="CompSudoku.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/georg/Generator/CompSudoku.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="33" column="28" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
+            <state relative-caret-position="262">
+              <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#693#694#0" expanded="true" />
-                <element signature="e#728#729#0" expanded="true" />
-                <element signature="e#757#758#0" expanded="true" />
-                <element signature="e#785#786#0" expanded="true" />
-                <element signature="e#820#821#0" expanded="true" />
-                <element signature="e#845#846#0" expanded="true" />
-                <element signature="e#1453#1454#0" expanded="true" />
-                <element signature="e#1485#1486#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Level.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/georg/Level.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-218">
+              <caret line="54" column="14" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CanBeDugList.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/georg/Generator/CanBeDugList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="31" column="18" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#670#671#0" expanded="true" />
+                <element signature="e#702#703#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LasVegasAlgorithm.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/georg/Generator/LasVegasAlgorithm.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="472">
+              <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -108,10 +131,11 @@
       <file leaf-file-name="Sudoku.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/georg/Sudoku.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
+            <state relative-caret-position="291">
+              <caret line="61" column="49" selection-start-line="61" selection-start-column="49" selection-end-line="61" selection-end-column="49" />
               <folding>
-                <element signature="e#518#519#0" expanded="true" />
+                <element signature="e#1218#1219#0" expanded="true" />
+                <element signature="e#1251#1252#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -151,12 +175,16 @@
         <option value="$PROJECT_DIR$/src/com/georg/Test/SudokuSolverTest.groovy" />
         <option value="$PROJECT_DIR$/src/Test/SudokuSolverTest.java" />
         <option value="$PROJECT_DIR$/src/com/georg/Generator/Sudoku.java" />
-        <option value="$PROJECT_DIR$/src/com/georg/Main.java" />
-        <option value="$PROJECT_DIR$/src/com/georg/Level.java" />
-        <option value="$PROJECT_DIR$/src/com/georg/Sudoku.java" />
-        <option value="$PROJECT_DIR$/src/com/georg/Generator/CompSudoku.java" />
-        <option value="$PROJECT_DIR$/src/com/georg/Generator/SudokuSolver.java" />
         <option value="$PROJECT_DIR$/src/com/georg/Generator/LasVegasAlgorithm.java" />
+        <option value="$PROJECT_DIR$/src/com/georg/Generator/CanBeDug.java" />
+        <option value="$PROJECT_DIR$/src/com/georg/Generator/CanBeDugList.java" />
+        <option value="$PROJECT_DIR$/src/com/georg/Generator/CompSudoku.java" />
+        <option value="$PROJECT_DIR$/src/com/georg/Sudoku.java" />
+        <option value="$PROJECT_DIR$/src/com/georg/Level.java" />
+        <option value="$PROJECT_DIR$/src/com/georg/Generator/StaticGenerator.java" />
+        <option value="$PROJECT_DIR$/src/com/georg/Main.java" />
+        <option value="$PROJECT_DIR$/src/com/georg/Generator/SudokuGen.java" />
+        <option value="$PROJECT_DIR$/src/com/georg/Generator/SudokuSolver.java" />
       </list>
     </option>
   </component>
@@ -172,6 +200,9 @@
         <option name="mavenHome" value="Bundled (Maven 3)" />
       </MavenGeneralSettings>
     </option>
+  </component>
+  <component name="NamedScopeManager">
+    <scope name="Module com.georg" pattern="src:com.georg.*" />
   </component>
   <component name="ProjectFrameBounds">
     <option name="width" value="1440" />
@@ -202,7 +233,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -265,6 +295,7 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -295,6 +326,9 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="TODO_SCOPE" value="Project Files" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -619,7 +653,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1464622533168</updated>
-      <workItem from="1464641368758" duration="11628000" />
+      <workItem from="1464641368758" duration="21281000" />
     </task>
     <task id="LOCAL-00001" summary="- created Git project&#10;- created basic class structure&#10;- added test method for SudokuSolver in Main.java">
       <created>1464639960408</created>
@@ -642,11 +676,18 @@
       <option name="project" value="LOCAL" />
       <updated>1464651711014</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="- implemented Las Vegas algorithm for terminal pattern creation">
+      <created>1464725515108</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1464725515108</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11628000" />
+    <option name="totallyTimeSpent" value="21281000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -659,7 +700,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -671,7 +712,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32771084" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25679544" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25679544" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -681,6 +722,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" x="100" y="100" width="1240" height="700" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
@@ -724,7 +766,8 @@
     <MESSAGE value="- created Git project&#10;- created basic class structure&#10;- added test method for SudokuSolver in Main.java" />
     <MESSAGE value="- created CompSudoku" />
     <MESSAGE value="- implemented full depth-first search (DFS) algorithm for the sudokus &#10;- added tester for CompSudoku&#10;- added computational sudoku class (CompSudoku)" />
-    <option name="LAST_COMMIT_MESSAGE" value="- implemented full depth-first search (DFS) algorithm for the sudokus &#10;- added tester for CompSudoku&#10;- added computational sudoku class (CompSudoku)" />
+    <MESSAGE value="- implemented Las Vegas algorithm for terminal pattern creation" />
+    <option name="LAST_COMMIT_MESSAGE" value="- implemented Las Vegas algorithm for terminal pattern creation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -742,9 +785,13 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="37" />
+      <option name="time" value="38" />
     </breakpoint-manager>
-    <watches-manager />
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="possible.getFree()" language="JAVA" custom="" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -767,8 +814,10 @@
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#780#781#0" expanded="true" />
-            <element signature="e#841#842#0" expanded="true" />
+            <element signature="e#470#471#0" expanded="true" />
+            <element signature="e#526#527#0" expanded="true" />
+            <element signature="e#868#869#0" expanded="true" />
+            <element signature="e#929#930#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -779,14 +828,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#693#694#0" expanded="true" />
-            <element signature="e#728#729#0" expanded="true" />
-            <element signature="e#757#758#0" expanded="true" />
-            <element signature="e#785#786#0" expanded="true" />
-            <element signature="e#820#821#0" expanded="true" />
-            <element signature="e#845#846#0" expanded="true" />
-            <element signature="e#1453#1454#0" expanded="true" />
-            <element signature="e#1485#1486#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -890,56 +931,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/georg/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/com/georg/Generator/CanBeDugList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        <state relative-caret-position="435">
+          <caret line="31" column="18" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/georg/Level.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/georg/Generator/SudokuGen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/georg/Sudoku.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
-          <folding>
-            <element signature="e#518#519#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/georg/Generator/CompSudoku.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="33" column="28" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#693#694#0" expanded="true" />
-            <element signature="e#728#729#0" expanded="true" />
-            <element signature="e#757#758#0" expanded="true" />
-            <element signature="e#785#786#0" expanded="true" />
-            <element signature="e#820#821#0" expanded="true" />
-            <element signature="e#845#846#0" expanded="true" />
-            <element signature="e#1453#1454#0" expanded="true" />
-            <element signature="e#1485#1486#0" expanded="true" />
+            <element signature="e#670#671#0" expanded="true" />
+            <element signature="e#702#703#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -947,7 +946,58 @@
     <entry file="file://$PROJECT_DIR$/src/com/georg/Generator/LasVegasAlgorithm.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="472">
-          <caret line="39" column="57" selection-start-line="39" selection-start-column="57" selection-end-line="39" selection-end-column="57" />
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/georg/Sudoku.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="61" column="49" selection-start-line="61" selection-start-column="49" selection-end-line="61" selection-end-column="49" />
+          <folding>
+            <element signature="e#1218#1219#0" expanded="true" />
+            <element signature="e#1251#1252#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/georg/Level.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-218">
+          <caret line="54" column="14" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/georg/Generator/SudokuGen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="117" column="26" selection-start-line="117" selection-start-column="26" selection-end-line="117" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3861#3862#0" expanded="true" />
+            <element signature="e#3890#3891#0" expanded="true" />
+            <element signature="e#3924#3925#0" expanded="true" />
+            <element signature="e#3953#3954#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/georg/Generator/StaticGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="42" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/georg/Generator/CompSudoku.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -956,12 +1006,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/georg/Generator/SudokuSolver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="80" column="41" selection-start-line="80" selection-start-column="41" selection-end-line="80" selection-end-column="41" />
+        <state relative-caret-position="-653">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#780#781#0" expanded="true" />
-            <element signature="e#841#842#0" expanded="true" />
+            <element signature="e#470#471#0" expanded="true" />
+            <element signature="e#526#527#0" expanded="true" />
+            <element signature="e#868#869#0" expanded="true" />
+            <element signature="e#929#930#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/georg/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1050,6 +1112,21 @@
               </list>
             </option>
           </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <last-edited>Module com.georg</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+          <order>
+            <scope name="Module com.georg" />
+          </order>
         </settings>
       </state>
     </states>

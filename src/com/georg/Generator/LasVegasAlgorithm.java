@@ -6,13 +6,11 @@ import it.unimi.dsi.util.XoRoShiRo128PlusRandom;
 
 import java.util.List;
 
-import static com.georg.Sudoku.FIELD_SIZE;
-import static com.georg.Sudoku.MAX_NUM;
-import static com.georg.Sudoku.NAN;
+import static com.georg.Sudoku.*;
 
 /**
  * Created by Georg on 31/05/16.
- *
+ * <p>
  * This class defines the Las Vegas Algorithm
  * for generation of terminal patterns.
  */
@@ -27,20 +25,20 @@ public class LasVegasAlgorithm {
      * To have not repeating patterns in the first few
      * lines, the code will return the last sudoku found
      * in a given time. In this case 100ms.
+     *
      * @param l The playing level.
      * @return Returns a terminal pattern.
      */
     public static Sudoku LasVegas(Level l) {
         XoRoShiRo128PlusRandom rand = new XoRoShiRo128PlusRandom();
-        while(true) {
+        while (true) {
             CompSudoku terminal = new CompSudoku(l);
 
-            terminal.setField((byte)(rand.nextInt(MAX_NUM)+1));
+            terminal.setField((byte) (rand.nextInt(MAX_NUM) + 1));
             for (int i = 0; i < 11; i++) {
-                rand.setSeed(System.currentTimeMillis());
-                terminal.setIndex(rand.nextInt(FIELD_SIZE*FIELD_SIZE));
+                terminal.setIndex(rand.nextInt(FIELD_SIZE * FIELD_SIZE));
                 List<Byte> pos = terminal.getAvailable();
-                if(pos.size()>0 && terminal.getAtIndex()==NAN)
+                if (pos.size() > 0 && terminal.getAtIndex() == NAN)
                     terminal.setField(pos.get(rand.nextInt(pos.size())));
                 else
                     i--;
@@ -48,7 +46,7 @@ public class LasVegasAlgorithm {
             terminal.resetIndex();
 
             SudokuSolver.DFSLV(terminal, System.currentTimeMillis(), 100, rand.nextInt(10000));
-            if(SudokuSolver.lastField != null)
+            if (SudokuSolver.lastField != null)
                 return SudokuSolver.lastField;
             SudokuSolver.lastField = null;
         }

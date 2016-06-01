@@ -6,12 +6,16 @@ import java.util.List;
 
 /**
  * Created by Georg on 30/05/16.
- *
+ * <p>
  * A class to solve sudokus in various ways.
  */
 public class SudokuSolver {
+    static Sudoku lastField = null;
+    private static int cSol = 0;
+
     /**
      * Find number of solutions for given sudoku.
+     *
      * @param sudoku The sudoku to solve.
      * @return Returns number of solutions.
      */
@@ -24,6 +28,7 @@ public class SudokuSolver {
      * "Is the sudoku solvable."
      * This is a faster variant of {@link #solutions(Sudoku)}
      * if the sudoku has a solution.
+     *
      * @param sudoku The sudoku to evaluate.
      * @return True if the sudoku is solvable.
      */
@@ -36,58 +41,61 @@ public class SudokuSolver {
      * possible solutions for the sudoku using
      * a brut force like algorithm that tries
      * out every valid combination of on the field.
+     *
      * @param sudoku The sudoku to solve.
-     * @param end False if just one solution should
-     *            be found, true if the total number
-     *            of all possible solution should returned.
+     * @param end    False if just one solution should
+     *               be found, true if the total number
+     *               of all possible solution should returned.
      * @return Returns the number of solutions found.
      */
     private static int DFS(CompSudoku sudoku, boolean end) {
-        if(sudoku.isIndexLast())
+        if (sudoku.isIndexLast())
             return 1;
 
         List<CompSudoku> compSudokus = sudoku.expand();
-        if(compSudokus.size()==0)
+        if (compSudokus.size() == 0)
             return 0;
 
         int sum = 0;
-        for(CompSudoku comp : compSudokus) {
+        for (CompSudoku comp : compSudokus) {
             sum += DFS(comp, end);
-            if(!end && sum!=0)
+            if (!end && sum != 0)
                 break;
         }
 
         return sum;
     }
 
-
-    static Sudoku lastField = null;
-    static int cSol = 0;
     /**
      * Tries to find a solution for a given field
-     * and returns exactly this solution.
-     * @param sudoku
-     * @param start
-     * @param maxTime
-     * @return
+     * and returns the solution
+     *
+     * @param sudoku  The field to solve
+     * @param start   The time of start
+     * @param maxTime The maximum time the algorithm is
+     *                allowed to calculate
+     * @param maxSol  The maximum number of solutions,
+     *                till the function returns.
+     *                This allows for more diverse fields.
+     * @return The Sudoku field.
      */
     static Sudoku DFSLV(CompSudoku sudoku, final long start, final int maxTime, final int maxSol) {
-        if(sudoku.isIndexLast())
+        if (sudoku.isIndexLast())
             return sudoku;
 
-        if(System.currentTimeMillis()-start > maxTime)
+        if (System.currentTimeMillis() - start > maxTime)
             return null;
 
         List<CompSudoku> compSudokus = sudoku.expand();
-        if(compSudokus.size()==0)
+        if (compSudokus.size() == 0)
             return null;
 
-        for(CompSudoku comp : compSudokus) {
+        for (CompSudoku comp : compSudokus) {
             Sudoku ret = DFSLV(comp, start, maxTime, maxSol);
-            if(ret!=null) {
-                if(cSol<=maxSol)
+            if (ret != null) {
+                if (cSol <= maxSol)
                     lastField = ret;
-                if(cSol==maxSol)
+                if (cSol == maxSol)
                     return null;
                 cSol++;
             }
@@ -95,6 +103,4 @@ public class SudokuSolver {
         }
         return null;
     }
-
-
 }
