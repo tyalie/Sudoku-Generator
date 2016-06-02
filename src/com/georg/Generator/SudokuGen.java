@@ -4,9 +4,11 @@ import com.georg.Level;
 import com.georg.Sudoku;
 import it.unimi.dsi.util.XoRoShiRo128PlusRandom;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static com.georg.Sudoku.FIELD_COUNT;
+import static com.georg.Sudoku.FIELD_SIZE;
 
 //@formatter:off
 /**
@@ -109,18 +111,28 @@ public class SudokuGen {
         possible = new CanBeDugList();
         final int minBound = rand.nextInt(l.getMaxTotalGiven() - l.getMinTotalGiven()) + l.getMinTotalGiven();
 
+        int i = -1;
         while (possible.isFree()) {
-            int i = -1;
             switch (l) {
                 case ExtremelyEasy:
                 case Easy:
-                    i = seq4RandomizingGlobally();
+                    i = seq4RandomizingGlobally(i);
+                    break;
+                case Medium:
+                    i = seq3JumpingOneCell(i);
+                    break;
+                case Hard:
+                    i = seq2WanderingAlongS(i);
+                    break;
+                case Evil:
+                    i = seq1Left2RightAndTop2Bottom(i);
                     break;
                 default:
                     throw new ArithmeticException("Level" + l + "NOT IMPLEMENTED YET");
             }
 
             CompSudoku tmp = sudoku.digClone(i);
+            tmp.setIndex(i);
             if (tmp.getNumTotalFields() >= minBound && tmp.getLowerBoundRC() >= l.getMinGivenRC()
                     && isUnique(tmp, i, sudoku.getAtIndex(i)))
                 sudoku = tmp;
@@ -129,8 +141,56 @@ public class SudokuGen {
         }
     }
 
-    private int seq4RandomizingGlobally() {
-        int i = 0;
+    private int seq1Left2RightAndTop2Bottom(int lastI) {
+        return (lastI+1)%FIELD_COUNT;
+    }
+
+    private int seq2WanderingAlongS(int lastI) {
+        if (lastI<0)
+            return 0;
+        int i;
+        if( (lastI/FIELD_SIZE)%2==0 ) {
+            if ( (lastI+1)%FIELD_SIZE==0 )
+                i = lastI+FIELD_SIZE;
+            else
+                i = lastI+1;
+        } else {
+            if ( lastI%FIELD_SIZE==0 )
+                i = lastI+FIELD_SIZE;
+            else
+                i = lastI-1;
+        }
+
+        return i%FIELD_COUNT;
+    }
+
+    private int seq3JumpingOneCell(int lastI) {
+        if(lastI<0)
+            return 0;
+        int i;
+
+        if( (lastI/FIELD_SIZE)%2==0) {
+            if ( (lastI+1)%FIELD_SIZE == 0 )
+                i = lastI+FIELD_SIZE-1;
+            else if ( (lastI+2)%FIELD_SIZE == 0 )
+                i = lastI+FIELD_SIZE+1;
+            else
+                i = lastI+2;
+        } else {
+            if( lastI%FIELD_SIZE == 1 )
+                i = lastI+FIELD_SIZE-1;
+            else if( lastI%FIELD_SIZE == 0 )
+                i = lastI+FIELD_SIZE+1;
+            else
+                i = lastI-2;
+        }
+        if(i%FIELD_COUNT!=i)
+            i = (i+1)%2;
+        return i;
+    }
+
+    private int seq4RandomizingGlobally(int lastI) {
+        int i;
         while (possible.isFree()) {
             i = rand.nextInt(FIELD_COUNT);
             if (possible.getAtIndex(i))

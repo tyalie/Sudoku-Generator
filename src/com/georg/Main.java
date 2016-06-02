@@ -37,7 +37,7 @@ public class Main {
         // testSolver();
         // testCompSudoku();
         // testLasVegasAlgorithm();
-        testSudokuGen(Level.Easy);
+        // testSudokuGen(Level.Evil);
     }
 
 
@@ -65,5 +65,7 @@ public class Main {
     private static void testSudokuGen(Level l) {
         Sudoku su = StaticGenerator.GenerateSudoku(l);
         System.out.println(su.toString());
+        int i = SudokuSolver.solutions(su);
+        assert 1==i : "The sudoku has "+i+" solution(s)";
     }
 }

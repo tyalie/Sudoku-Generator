@@ -10,7 +10,7 @@ import java.util.List;
  * A class to solve sudokus in various ways.
  */
 public class SudokuSolver {
-    static Sudoku lastField = null;
+    private static Sudoku lastField = null;
     private static int cSol = 0;
 
     /**
@@ -19,7 +19,7 @@ public class SudokuSolver {
      * @param sudoku The sudoku to solve.
      * @return Returns number of solutions.
      */
-    static int solutions(Sudoku sudoku) {
+    public static int solutions(Sudoku sudoku) {
         return DFS(new CompSudoku(sudoku), true);
     }
 
@@ -66,6 +66,14 @@ public class SudokuSolver {
         return sum;
     }
 
+
+    public static Sudoku getLastField() {
+        cSol = 0;
+        Sudoku su = lastField;
+        lastField = null;
+        return su;
+    }
+
     /**
      * Tries to find a solution for a given field
      * and returns the solution
@@ -95,11 +103,10 @@ public class SudokuSolver {
             if (ret != null) {
                 if (cSol <= maxSol)
                     lastField = ret;
-                if (cSol == maxSol)
-                    return null;
                 cSol++;
             }
-
+            if (cSol == maxSol)
+                return null;
         }
         return null;
     }

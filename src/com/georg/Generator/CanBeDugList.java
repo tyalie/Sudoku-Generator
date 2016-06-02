@@ -46,4 +46,9 @@ class CanBeDugList {
             field[i] = v;
         }
     }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(field);
+    }
 }

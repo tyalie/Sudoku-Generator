@@ -5,6 +5,7 @@ import com.georg.Sudoku;
 import it.unimi.dsi.util.XoRoShiRo128PlusRandom;
 
 import java.util.List;
+import java.util.Random;
 
 import static com.georg.Sudoku.*;
 
@@ -31,11 +32,12 @@ public class LasVegasAlgorithm {
      */
     public static Sudoku LasVegas(Level l) {
         XoRoShiRo128PlusRandom rand = new XoRoShiRo128PlusRandom();
+        rand.setSeed(System.currentTimeMillis());
         while (true) {
             CompSudoku terminal = new CompSudoku(l);
 
             terminal.setField((byte) (rand.nextInt(MAX_NUM) + 1));
-            for (int i = 0; i < 11; i++) {
+            for (int i = 0; i < 10; i++) {
                 terminal.setIndex(rand.nextInt(FIELD_SIZE * FIELD_SIZE));
                 List<Byte> pos = terminal.getAvailable();
                 if (pos.size() > 0 && terminal.getAtIndex() == NAN)
@@ -45,10 +47,10 @@ public class LasVegasAlgorithm {
             }
             terminal.resetIndex();
 
-            SudokuSolver.DFSLV(terminal, System.currentTimeMillis(), 100, rand.nextInt(10000));
-            if (SudokuSolver.lastField != null)
-                return SudokuSolver.lastField;
-            SudokuSolver.lastField = null;
+            SudokuSolver.DFSLV(terminal, System.currentTimeMillis(), 200, rand.nextInt(10000));
+            Sudoku su = SudokuSolver.getLastField();
+            if (su != null)
+                return su;
         }
     }
 }
