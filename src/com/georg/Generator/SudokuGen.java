@@ -4,7 +4,6 @@ import com.georg.Level;
 import com.georg.Sudoku;
 import it.unimi.dsi.util.XoRoShiRo128PlusRandom;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static com.georg.Sudoku.FIELD_COUNT;

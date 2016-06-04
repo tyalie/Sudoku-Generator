@@ -5,7 +5,6 @@ import com.georg.Sudoku;
 import it.unimi.dsi.util.XoRoShiRo128PlusRandom;
 
 import java.util.List;
-import java.util.Random;
 
 import static com.georg.Sudoku.*;
 
@@ -31,13 +30,19 @@ public class LasVegasAlgorithm {
      * @return Returns a terminal pattern.
      */
     public static Sudoku LasVegas(Level l) {
+        // Faster random generator.
         XoRoShiRo128PlusRandom rand = new XoRoShiRo128PlusRandom();
         rand.setSeed(System.currentTimeMillis());
         while (true) {
+            // Creates an empty sudoku field.
             CompSudoku terminal = new CompSudoku(l);
 
+            /* Assigns a random number at the start
+             * This blocks annoying 123... sequences
+             * in the first rows. */
             terminal.setField((byte) (rand.nextInt(MAX_NUM) + 1));
             for (int i = 0; i < 10; i++) {
+                // Randomly sets items on the field.
                 terminal.setIndex(rand.nextInt(FIELD_SIZE * FIELD_SIZE));
                 List<Byte> pos = terminal.getAvailable();
                 if (pos.size() > 0 && terminal.getAtIndex() == NAN)
@@ -45,10 +50,20 @@ public class LasVegasAlgorithm {
                 else
                     i--;
             }
+            // Reset index to next free one, important for the solver to work.
             terminal.resetIndex();
 
+            /* Trigger the solving and limit the calculation
+             * time, but also choose randomly at which amount
+             * of found solutions it should stop. Gives the
+             * whole generated terminal pattern some randomness.
+             *
+             * The time limit is there so that the algorithm here
+             * will produce results in an relative short amount of time.
+             */
             SudokuSolver.DFSLV(terminal, System.currentTimeMillis(), 200, rand.nextInt(10000));
             Sudoku su = SudokuSolver.getLastField();
+            // If Sudoku correctly finish the process.
             if (su != null)
                 return su;
         }

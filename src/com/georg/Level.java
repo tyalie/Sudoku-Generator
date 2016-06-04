@@ -30,7 +30,7 @@ public enum Level {
      * </tr>
      * <tr>
      * <td>Algorithm to use</td>
-     * <td>{@link SudokuGen#seq4RandomizingGlobally() Randomizing globally (4)}</td>
+     * <td>{@link SudokuGen#seq4RandomizingGlobally(int)} () Randomizing globally (4)}</td>
      * </tr>
      * </table>
      */
@@ -48,7 +48,7 @@ public enum Level {
      * </tr>
      * <tr>
      * <td>Algorithm to use</td>
-     * <td>{@link SudokuGen#seq4RandomizingGlobally() Randomizing globally (4)}</td>
+     * <td>{@link SudokuGen#seq4RandomizingGlobally(int) Randomizing globally (4)}</td>
      * </tr>
      * </table>
      */
@@ -66,7 +66,7 @@ public enum Level {
      * </tr>
      * <tr>
      * <td>Algorithm to use</td>
-     * <td>Jumping one Cell</td>
+     * <td>{@link SudokuGen#seq3JumpingOneCell(int) Jumping one Cell (3)}</td>
      * </tr>
      * </table>
      */
@@ -84,7 +84,7 @@ public enum Level {
      * </tr>
      * <tr>
      * <td>Algorithm to use</td>
-     * <td>Wandering along "S"</td>
+     * <td>{@link SudokuGen#seq2WanderingAlongS(int) Wandering along "S"}</td>
      * </tr>
      * </table>
      */
@@ -103,15 +103,19 @@ public enum Level {
      * </tr>
      * <tr>
      * <td>Algorithm to use</td>
-     * <td>Left to Right then Top to Bottom</td>
+     * <td>{@link SudokuGen#seq1Left2RightAndTop2Bottom(int) Left to Right then Top to Bottom}</td>
      * </tr>
      * </table>
      */
     Evil("Devil's playground", 22, 27, 0);
 
+    // The name of the object
     private String name;
+    // The minimum number of total givens
     private int minTotalGiven;
+    // The maximum number of total givens
     private int maxTotalGiven;
+    // The minimum amount of givens for all rows and cols.
     private int minGivenRC;
 
     /**

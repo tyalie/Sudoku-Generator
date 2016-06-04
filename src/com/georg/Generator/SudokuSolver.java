@@ -6,8 +6,9 @@ import java.util.List;
 
 /**
  * Created by Georg on 30/05/16.
- * <p>
+ *
  * A class to solve sudokus in various ways.
+ * By use of Depth First Search.
  */
 public class SudokuSolver {
     private static Sudoku lastField = null;
@@ -67,7 +68,17 @@ public class SudokuSolver {
     }
 
 
-    public static Sudoku getLastField() {
+    /**
+     * Securly returns the found
+     * result from the
+     * {@link #DFSLV(CompSudoku, long, int, int) Depth first seach for Las Vegas}
+     * method.
+     *
+     * It also will reset the internal used {@link #cSol counter}
+     * and the {@link #lastField buffer field}.
+     * @return Returns the found field.
+     */
+    static Sudoku getLastField() {
         cSol = 0;
         Sudoku su = lastField;
         lastField = null;
@@ -76,7 +87,9 @@ public class SudokuSolver {
 
     /**
      * Tries to find a solution for a given field
-     * and returns the solution
+     * and returns the solution.
+     * The actual result of this method
+     * can be accessed through {@link #getLastField()}.
      *
      * @param sudoku  The field to solve
      * @param start   The time of start
@@ -85,7 +98,7 @@ public class SudokuSolver {
      * @param maxSol  The maximum number of solutions,
      *                till the function returns.
      *                This allows for more diverse fields.
-     * @return The Sudoku field.
+     * @return The sudoku field.
      */
     static Sudoku DFSLV(CompSudoku sudoku, final long start, final int maxTime, final int maxSol) {
         if (sudoku.isIndexLast())
