@@ -4,54 +4,20 @@ import com.georg.Generator.*;
 
 public class Main {
 
-    private static Sudoku testCase1 = new Sudoku(Level.Easy, new byte[]{
-            -1, 9, -1, 6, -1, 1, -1, -1, -1,
-            -1, -1, -1, -1, 3, -1, 9, -1, 1,
-            -1, 3, -1, 2, -1, 8, -1, -1, -1,
-            7, -1, 9, -1, -1, -1, -1, -1, 4,
-            -1, 4, -1, 3, -1, 7, -1, 9, -1,
-            8, -1, 3, -1, 1, -1, 5, -1, 7,
-            -1, 5, -1, 7, -1, 2, -1, 1, -1,
-            9, -1, 4, -1, 5, -1, 7, -1, 6,
-            -1, 1, -1, 9, -1, 6, -1, 5, 8
-    });
-
-
     public static void main(String[] args) {
-        // write your code here
-        // testSolver();
-        // testLasVegasAlgorithm();
-        testSudokuGen(Level.Evil);
-        // testPermutation(testCase1);
+        try {
+            testSudokuGen(Level.Evil);
+        } catch (ValueFormatException e) {
+            e.printStackTrace();
+        }
     }
 
-
-    private static void testSolver() {
-        boolean ret = SudokuSolver.isSolvable(testCase1);
-        System.out.println("Value is: " + ret);
-        assert ret : "Value is: " + ret;
-    }
-
-
-    private static void testLasVegasAlgorithm() {
-        Sudoku su = LasVegasAlgorithm.LasVegas(Level.Easy);
-        assert su != null;
-        System.out.println(su.toString());
-    }
-
-    private static void testSudokuGen(Level l) {
+    private static void testSudokuGen(Level l) throws ValueFormatException{
         Sudoku su = StaticGenerator.GenerateSudoku(l);
         System.out.println(su+"\n\n");
         int i = SudokuSolver.solutions(su);
         assert 1==i : "The sudoku has "+i+" solution(s)";
     }
 
-    private static void testPermutation(Sudoku su) {
-        SudokuPropagation sP = new SudokuPropagation(su);
-        System.out.println(sP.getSudoku()+"\n\n");
 
-        sP.randomSampling(10);
-
-        System.out.println(sP.getSudoku()+"\n\n");
-    }
 }

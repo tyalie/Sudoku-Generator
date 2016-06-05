@@ -2,6 +2,7 @@ package com.georg.Generator;
 
 import com.georg.Level;
 import com.georg.Sudoku;
+import com.georg.ValueFormatException;
 import it.unimi.dsi.util.XoRoShiRo128PlusRandom;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import static com.georg.Sudoku.*;
  * This class defines the Las Vegas Algorithm
  * for generation of terminal patterns.
  */
+@SuppressWarnings("WeakerAccess")
 public class LasVegasAlgorithm {
     /**
      * Las Vegas Algorithm for Sudoku generation.
@@ -29,7 +31,7 @@ public class LasVegasAlgorithm {
      * @param l The playing level.
      * @return Returns a terminal pattern.
      */
-    public static Sudoku LasVegas(Level l) {
+    public static Sudoku LasVegas(Level l) throws ValueFormatException{
         // Faster random generator.
         XoRoShiRo128PlusRandom rand = new XoRoShiRo128PlusRandom();
         rand.setSeed(System.currentTimeMillis());

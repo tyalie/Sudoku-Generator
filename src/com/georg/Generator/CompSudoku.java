@@ -2,6 +2,7 @@ package com.georg.Generator;
 
 import com.georg.Level;
 import com.georg.Sudoku;
+import com.georg.ValueFormatException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,7 +28,7 @@ class CompSudoku extends Sudoku {
         super(l);
     }
 
-    private CompSudoku(Level l, byte[] field) throws RuntimeException {
+    private CompSudoku(Level l, byte[] field) throws ValueFormatException {
         super(l, field);
     }
 
@@ -38,7 +39,7 @@ class CompSudoku extends Sudoku {
      *
      * @param sudoku The sudoku.
      */
-    CompSudoku(Sudoku sudoku) {
+    CompSudoku(Sudoku sudoku) throws ValueFormatException {
         this(sudoku.getDifficulty(), sudoku.getField());
         moveNext();
     }
@@ -48,7 +49,8 @@ class CompSudoku extends Sudoku {
      * instance of a {@link CompSudoku}
      * @param sudoku The sudoku.
      */
-    private CompSudoku(CompSudoku sudoku) {
+    @SuppressWarnings("unused")
+    private CompSudoku(CompSudoku sudoku) throws ValueFormatException{
         this(sudoku.getDifficulty(), sudoku.getField().clone());
         index = sudoku.index;
     }
@@ -163,7 +165,7 @@ class CompSudoku extends Sudoku {
      * @return The list of possible sudokus that
      * could be childs from the local index.
      */
-    List<CompSudoku> expand() {
+    List<CompSudoku> expand() throws ValueFormatException{
         /* All numbers. Create boolean vector,
          * where each index represents a
          * number that is equal to the index+1.
@@ -177,6 +179,7 @@ class CompSudoku extends Sudoku {
             if (possible[i - 1]) {
                 CompSudoku c = new CompSudoku(this);
                 c.setField(i);
+                c.resetIndex();
                 ret.add(c);
             }
         }
@@ -275,7 +278,7 @@ class CompSudoku extends Sudoku {
     int getNumTotalFields() {
         int count = 0;
         for (byte f : field)
-            if (f != -1)
+            if (f != NAN)
                 count++;
         return count;
     }
@@ -289,9 +292,9 @@ class CompSudoku extends Sudoku {
         for (int i = 0; i < FIELD_SIZE; i++) {
             int countR = 0, countC = 0;
             for (int j = 0; j < FIELD_SIZE; j++) {
-                if (field[i * FIELD_SIZE + j] != -1)
+                if (field[i * FIELD_SIZE + j] != NAN)
                     countR++;
-                if (field[j * FIELD_SIZE + i] != -1)
+                if (field[j * FIELD_SIZE + i] != NAN)
                     countC++;
             }
             lowerBound = Math.min(Math.min(countC, countR), lowerBound);
@@ -305,12 +308,29 @@ class CompSudoku extends Sudoku {
      * Returns a clone of the current object,
      * where the field at the specified index
      * is empty.
-     * @param index
+     * @param index The index.
      * @return The cloned, edited sudoku.
      */
-    CompSudoku digClone(int index) {
+    CompSudoku digClone(int index) throws ValueFormatException{
         CompSudoku ret = new CompSudoku(this);
-        ret.field[index] = -1;
+        ret.field[index] = NAN;
+        ret.setIndex(index);
         return ret;
+    }
+
+    /**
+     * Editable.
+     * @return The editable field.
+     */
+    @Override
+    public byte[] getField() {
+        return field;
+    }
+
+    /**
+     * @return Current index.
+     */
+    int getIndex() {
+        return index;
     }
 }

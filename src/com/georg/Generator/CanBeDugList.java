@@ -67,7 +67,7 @@ class CanBeDugList {
 
     /**
      * Sets the value v at position i. If
-     * automaticly handles {@link #count}.
+     * automatically handles {@link #count}.
      * @param i The index
      * @param v The value to write on index i.
      */

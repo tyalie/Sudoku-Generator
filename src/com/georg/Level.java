@@ -30,7 +30,7 @@ public enum Level {
      * </tr>
      * <tr>
      * <td>Algorithm to use</td>
-     * <td>{@link SudokuGen#seq4RandomizingGlobally(int)} () Randomizing globally (4)}</td>
+     * <td>{@link SudokuGen#seq4RandomizingGlobally()} () Randomizing globally (4)}</td>
      * </tr>
      * </table>
      */
@@ -48,7 +48,7 @@ public enum Level {
      * </tr>
      * <tr>
      * <td>Algorithm to use</td>
-     * <td>{@link SudokuGen#seq4RandomizingGlobally(int) Randomizing globally (4)}</td>
+     * <td>{@link SudokuGen#seq4RandomizingGlobally() Randomizing globally (4)}</td>
      * </tr>
      * </table>
      */
@@ -110,13 +110,13 @@ public enum Level {
     Evil("Devil's playground", 22, 27, 0);
 
     // The name of the object
-    private String name;
+    private final String name;
     // The minimum number of total givens
-    private int minTotalGiven;
+    private final int minTotalGiven;
     // The maximum number of total givens
-    private int maxTotalGiven;
+    private final int maxTotalGiven;
     // The minimum amount of givens for all rows and cols.
-    private int minGivenRC;
+    private final int minGivenRC;
 
     /**
      * Initializer for a Level enum

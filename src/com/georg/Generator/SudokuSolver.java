@@ -1,6 +1,7 @@
 package com.georg.Generator;
 
 import com.georg.Sudoku;
+import com.georg.ValueFormatException;
 
 import java.util.List;
 
@@ -20,7 +21,8 @@ public class SudokuSolver {
      * @param sudoku The sudoku to solve.
      * @return Returns number of solutions.
      */
-    public static int solutions(Sudoku sudoku) {
+    @SuppressWarnings("WeakerAccess")
+    public static int solutions(Sudoku sudoku) throws ValueFormatException{
         return DFS(new CompSudoku(sudoku), true);
     }
 
@@ -33,7 +35,8 @@ public class SudokuSolver {
      * @param sudoku The sudoku to evaluate.
      * @return True if the sudoku is solvable.
      */
-    public static boolean isSolvable(Sudoku sudoku) {
+    @SuppressWarnings("WeakerAccess")
+    public static boolean isSolvable(Sudoku sudoku) throws ValueFormatException {
         return DFS(new CompSudoku(sudoku), false) > 0;
     }
 
@@ -49,7 +52,7 @@ public class SudokuSolver {
      *               of all possible solution should returned.
      * @return Returns the number of solutions found.
      */
-    private static int DFS(CompSudoku sudoku, boolean end) {
+    private static int DFS(CompSudoku sudoku, boolean end) throws ValueFormatException{
         if (sudoku.isIndexLast())
             return 1;
 
@@ -100,7 +103,7 @@ public class SudokuSolver {
      *                This allows for more diverse fields.
      * @return The sudoku field.
      */
-    static Sudoku DFSLV(CompSudoku sudoku, final long start, final int maxTime, final int maxSol) {
+    static Sudoku DFSLV(CompSudoku sudoku, final long start, final int maxTime, final int maxSol) throws ValueFormatException{
         if (sudoku.isIndexLast())
             return sudoku;
 
