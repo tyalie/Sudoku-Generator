@@ -29,11 +29,12 @@ public class SudokuPropagation {
     /**
      * Initialises the class with the input
      * sudoku and solves it.
+     *
      * @param sudoku The sudoku to be propagated.
      */
-    public SudokuPropagation(Sudoku sudoku) throws ValueFormatException{
+    public SudokuPropagation(Sudoku sudoku) throws ValueFormatException {
         this.sudoku = new CompSudoku(sudoku);
-        SudokuSolver.DFSLV(this.sudoku, System.currentTimeMillis()*2, 0, 1);
+        SudokuSolver.DFSLV(this.sudoku, System.currentTimeMillis() * 2, 0, 1);
         solvedSudoku = SudokuSolver.getLastField();
     }
 
@@ -56,8 +57,8 @@ public class SudokuPropagation {
      * └───┴───┴───┘      └───┴───┴───┘
      *     Mutual exchange of two
      *            numbers.
-     *
      * </code></pre>
+     *
      * @param d1 The first digit.
      * @param d2 The second digit.
      * @return Always true.
@@ -67,24 +68,24 @@ public class SudokuPropagation {
      */
     //@formatter:on
     @SuppressWarnings("unused")
-    public boolean prop1_TwoDigits(byte d1, byte d2) throws ValueFormatException{
-        if(d1<=0 || d1 > MAX_NUM)
+    public boolean prop1_TwoDigits(byte d1, byte d2) throws ValueFormatException {
+        if (d1 <= 0 || d1 > MAX_NUM)
             throw new ValueFormatException("d1 is out of range");
-        if(d2<=0 || d2 > MAX_NUM)
+        if (d2 <= 0 || d2 > MAX_NUM)
             throw new ValueFormatException("d2 is out of range");
 
-        for (int i = 0; i < BLOCK_SIZE*BLOCK_SIZE; i++) {
-            int i_d1=-1, i_d2=-1;
+        for (int i = 0; i < BLOCK_SIZE * BLOCK_SIZE; i++) {
+            int i_d1 = -1, i_d2 = -1;
             // Find digits.
-            for (int j = 0; j < BLOCK_SIZE*BLOCK_SIZE; j++) {
-                int x = i%3*BLOCK_SIZE+j%3+(j/3+i/3*3)*FIELD_SIZE;
-                if(solvedSudoku.getAtIndex(x)==d1)
+            for (int j = 0; j < BLOCK_SIZE * BLOCK_SIZE; j++) {
+                int x = i % 3 * BLOCK_SIZE + j % 3 + (j / 3 + i / 3 * 3) * FIELD_SIZE;
+                if (solvedSudoku.getAtIndex(x) == d1)
                     i_d1 = x;
-                else if(solvedSudoku.getAtIndex(x)==d2)
+                else if (solvedSudoku.getAtIndex(x) == d2)
                     i_d2 = x;
             }
 
-            if(i_d1==-1 || i_d2==-1)
+            if (i_d1 == -1 || i_d2 == -1)
                 throw new ArithmeticException("Unreachable state reached");
 
             // Swap them.
@@ -107,6 +108,7 @@ public class SudokuPropagation {
      *     mutual exchange of two
      *   columns in the same column
      * </code></pre>
+     *
      * @param block The block.
      * @param col1 The first column.
      * @param col2 The second column.
@@ -117,12 +119,12 @@ public class SudokuPropagation {
      */
     //@formatter:on
     public boolean prop2_TwoColumnInBlock(int block, int col1, int col2) throws ValueFormatException {
-        if(col1<0 || col1>=BLOCK_SIZE || col2<0 || col2>=BLOCK_SIZE)
+        if (col1 < 0 || col1 >= BLOCK_SIZE || col2 < 0 || col2 >= BLOCK_SIZE)
             throw new ValueFormatException("Col1 or col2 are not in range");
-        if(block<0 || block>=BLOCK_SIZE)
+        if (block < 0 || block >= BLOCK_SIZE)
             throw new ValueFormatException("Bock is out of range");
 
-        if(col1==col2)
+        if (col1 == col2)
             return false;
 
         for (int i = 0; i < FIELD_SIZE; i++)
@@ -131,7 +133,7 @@ public class SudokuPropagation {
         return true;
     }
 
-     //@formatter:off
+    //@formatter:off
     /**
      * Swaps two block columns.
      * <pre><code>
@@ -154,12 +156,12 @@ public class SudokuPropagation {
      */
     //@formatter:on
     public boolean prop3_TwoColumnOfBlock(int col1, int col2) throws ValueFormatException {
-        if(col1<0 || col1>=BLOCK_SIZE || col2<0 || col2>=BLOCK_SIZE)
+        if (col1 < 0 || col1 >= BLOCK_SIZE || col2 < 0 || col2 >= BLOCK_SIZE)
             throw new ValueFormatException("Col1 or col2 are not in range");
-        for(int i = 0; i< FIELD_SIZE; i++) {
+        for (int i = 0; i < FIELD_SIZE; i++) {
             for (int j = 0; j < BLOCK_SIZE; j++)
-                sudoku.swapIndex(CompSudoku.getStaticIndex(col1*BLOCK_SIZE+j,i),
-                        CompSudoku.getStaticIndex(col2*BLOCK_SIZE+j, i));
+                sudoku.swapIndex(CompSudoku.getStaticIndex(col1 * BLOCK_SIZE + j, i),
+                        CompSudoku.getStaticIndex(col2 * BLOCK_SIZE + j, i));
         }
         return true;
     }
@@ -185,11 +187,11 @@ public class SudokuPropagation {
      */
     @SuppressWarnings("SuspiciousNameCombination")
     public boolean prop4_GridRolling(int deg) {
-        deg = deg%4;
-        if(deg == 0)
+        deg = deg % 4;
+        if (deg == 0)
             return false;
-        if(deg<0)
-            deg = 4+deg;
+        if (deg < 0)
+            deg = 4 + deg;
 
         CompSudoku su = new CompSudoku(sudoku.getDifficulty());
         CompSudoku solvedSu = new CompSudoku(sudoku.getDifficulty());
@@ -200,18 +202,18 @@ public class SudokuPropagation {
                 // Everybody with a beautiful, non-switch idea is welcome.
                 switch (deg) {
                     case 1:
-                        i = CompSudoku.getStaticIndex(FIELD_SIZE-y-1, x);
+                        i = CompSudoku.getStaticIndex(FIELD_SIZE - y - 1, x);
                         break;
                     case 2:
-                        i = CompSudoku.getStaticIndex(FIELD_SIZE-x-1, FIELD_SIZE-y-1);
+                        i = CompSudoku.getStaticIndex(FIELD_SIZE - x - 1, FIELD_SIZE - y - 1);
                         break;
                     case 3:
-                        i = CompSudoku.getStaticIndex(y, FIELD_SIZE-x-1);
+                        i = CompSudoku.getStaticIndex(y, FIELD_SIZE - x - 1);
                         break;
                 }
                 // Need to flip solved one and current one.
-                su.setAtField(i, sudoku.getAtIndex(x,y));
-                solvedSu.setAtField(i, solvedSudoku.getAtIndex(x,y));
+                su.setAtField(i, sudoku.getAtIndex(x, y));
+                solvedSu.setAtField(i, solvedSudoku.getAtIndex(x, y));
             }
         }
 
@@ -223,10 +225,11 @@ public class SudokuPropagation {
     /**
      * Samples randomly three of the four methods
      * from above. Excludes {@link #prop1_TwoDigits(byte, byte)}.
+     *
      * @param steps The amount of valid steps of sampling.
      * @throws ValueFormatException If an error was thrown. (Heavily unlikely)
      */
-    public void randomSampling(int steps) throws ValueFormatException{
+    public void randomSampling(int steps) throws ValueFormatException {
         XoRoShiRo128PlusRandom rand = new XoRoShiRo128PlusRandom();
         for (int i = 0; i < steps; i++) {
             boolean ret = true;
@@ -239,12 +242,12 @@ public class SudokuPropagation {
                     ret = prop3_TwoColumnOfBlock(rand.nextInt(BLOCK_SIZE), rand.nextInt(BLOCK_SIZE));
                     break;
                 case 2:
-                    ret = prop4_GridRolling(rand.nextInt(3)+1);
+                    ret = prop4_GridRolling(rand.nextInt(3) + 1);
                     break;
             }
 
             // If action was useless, reuse this step.
-            if(!ret)
+            if (!ret)
                 i--;
         }
     }

@@ -13,7 +13,7 @@ import static com.georg.Sudoku.FIELD_COUNT;
  * For performance reasons does this class
  * use an extra counter to know the amount
  * of free fields.
- *
+ * <p>
  * See number 4: "Pruning optimization"
  * in the paper.
  */
@@ -47,6 +47,7 @@ class CanBeDugList {
     /**
      * Used to get fastly an overview
      * of the amount of free fields.
+     *
      * @return True if there are free fields,
      * if else than False.
      */
@@ -57,6 +58,7 @@ class CanBeDugList {
     /**
      * Returns the current boolean value
      * in the CanBeDugList at the index i.
+     *
      * @param i The index.
      * @return Returns the value of the field
      * at i.
@@ -68,12 +70,13 @@ class CanBeDugList {
     /**
      * Sets the value v at position i. If
      * automatically handles {@link #count}.
+     *
      * @param i The index
      * @param v The value to write on index i.
      */
     void setAtIndex(final int i, final boolean v) {
         if (field[i] != v) {
-            count+=v?1:-1;
+            count += v ? 1 : -1;
             field[i] = v;
         }
     }

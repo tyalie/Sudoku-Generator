@@ -31,7 +31,7 @@ public class LasVegasAlgorithm {
      * @param l The playing level.
      * @return Returns a terminal pattern.
      */
-    public static Sudoku LasVegas(Level l) throws ValueFormatException{
+    public static Sudoku LasVegas(Level l) throws ValueFormatException {
         // Faster random generator.
         XoRoShiRo128PlusRandom rand = new XoRoShiRo128PlusRandom();
         rand.setSeed(System.currentTimeMillis());

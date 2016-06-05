@@ -47,17 +47,30 @@ class CompSudoku extends Sudoku {
     /**
      * This constructor creates a copy of another
      * instance of a {@link CompSudoku}
+     *
      * @param sudoku The sudoku.
      */
     @SuppressWarnings("unused")
-    private CompSudoku(CompSudoku sudoku) throws ValueFormatException{
+    private CompSudoku(CompSudoku sudoku) throws ValueFormatException {
         this(sudoku.getDifficulty(), sudoku.getField().clone());
         index = sudoku.index;
     }
 
     /**
+     * Creates an index from an x, y position.
+     *
+     * @param x The x position.
+     * @param y The y position.
+     * @return The calculated 1D index.
+     */
+    static int getStaticIndex(int x, int y) {
+        return x + FIELD_SIZE * y;
+    }
+
+    /**
      * Returns the current value on the
      * current index.
+     *
      * @return Returns the value on the
      * current index.
      */
@@ -66,17 +79,10 @@ class CompSudoku extends Sudoku {
     }
 
     /**
-     * Creates an index from an x, y position.
-     * @param x The x position.
-     * @param y The y position.
-     * @return The calculated 1D index.
-     */
-    static int getStaticIndex(int x, int y) { return x + FIELD_SIZE * y; }
-
-    /**
      * Swaps the values from two indexes
      * on the field. Unsecured but fast.
      * Doesn't move index.
+     *
      * @param i1 The first index.
      * @param i2 The second index.
      */
@@ -84,16 +90,6 @@ class CompSudoku extends Sudoku {
         byte tmp = field[i1];
         field[i1] = field[i2];
         field[i2] = tmp;
-    }
-
-    /**
-     * Sets the internal index to the
-     * specified one.
-     * @param index The index you
-     *              talk'n about.
-     */
-    void setIndex(int index) {
-        this.index = index;
     }
 
     /**
@@ -141,6 +137,7 @@ class CompSudoku extends Sudoku {
      * input index to the specified value.
      * This is independent from the local
      * index.
+     *
      * @param index The index
      * @param value The new value for
      *              the field at index.
@@ -151,21 +148,14 @@ class CompSudoku extends Sudoku {
     }
 
     /**
-     * Sets the field at the local index.
-     * @param value The value.
-     */
-    void setField(byte value) {
-        field[index] = value;
-    }
-
-    /**
      * Lists all sudokus that have the field
      * at the current free index replaced with
      * all possible values.
+     *
      * @return The list of possible sudokus that
      * could be childs from the local index.
      */
-    List<CompSudoku> expand() throws ValueFormatException{
+    List<CompSudoku> expand() throws ValueFormatException {
         /* All numbers. Create boolean vector,
          * where each index represents a
          * number that is equal to the index+1.
@@ -189,6 +179,7 @@ class CompSudoku extends Sudoku {
     /**
      * Returns a list of all possible values
      * at the position of the local index.
+     *
      * @return List of all possible values
      * at the current index.
      */
@@ -210,7 +201,6 @@ class CompSudoku extends Sudoku {
         }
         return ret;
     }
-
 
     /**
      * Rule one is the first rule for solving sudokus named in
@@ -270,7 +260,6 @@ class CompSudoku extends Sudoku {
         return possible;
     }
 
-
     /**
      * @return the total number of non-free
      * fields. Also called "givens".
@@ -308,10 +297,11 @@ class CompSudoku extends Sudoku {
      * Returns a clone of the current object,
      * where the field at the specified index
      * is empty.
+     *
      * @param index The index.
      * @return The cloned, edited sudoku.
      */
-    CompSudoku digClone(int index) throws ValueFormatException{
+    CompSudoku digClone(int index) throws ValueFormatException {
         CompSudoku ret = new CompSudoku(this);
         ret.field[index] = NAN;
         ret.setIndex(index);
@@ -320,6 +310,7 @@ class CompSudoku extends Sudoku {
 
     /**
      * Editable.
+     *
      * @return The editable field.
      */
     @Override
@@ -328,9 +319,29 @@ class CompSudoku extends Sudoku {
     }
 
     /**
+     * Sets the field at the local index.
+     *
+     * @param value The value.
+     */
+    void setField(byte value) {
+        field[index] = value;
+    }
+
+    /**
      * @return Current index.
      */
     int getIndex() {
         return index;
+    }
+
+    /**
+     * Sets the internal index to the
+     * specified one.
+     *
+     * @param index The index you
+     *              talk'n about.
+     */
+    void setIndex(int index) {
+        this.index = index;
     }
 }

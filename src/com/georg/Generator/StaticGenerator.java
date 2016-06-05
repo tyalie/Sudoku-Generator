@@ -6,7 +6,7 @@ import com.georg.ValueFormatException;
 
 /**
  * Created by Georg on 31/05/16.
- *
+ * <p>
  * Should be used class to generate algorithms.
  * Internal method includes all important steps
  * to generate a satisfying sudoku puzzle at the
@@ -16,10 +16,11 @@ public class StaticGenerator {
     /**
      * The method that allows to generate a
      * sudoku in the given difficulty.
+     *
      * @param l The difficultly.
      * @return The final sudoku puzzle.
      */
-    public static Sudoku GenerateSudoku(Level l) throws ValueFormatException{
+    public static Sudoku GenerateSudoku(Level l) throws ValueFormatException {
         while (true) {
             // Generates a terminal pattern.
             Sudoku su = LasVegasAlgorithm.LasVegas(l);
@@ -36,7 +37,7 @@ public class StaticGenerator {
              * because all other properties are guarantied
              * to be satisfied in the SudokuGen class.
              */
-            if ( ((CompSudoku)gen.getSudoku()).getNumTotalFields() <= l.getMaxTotalGiven()) {
+            if (((CompSudoku) gen.getSudoku()).getNumTotalFields() <= l.getMaxTotalGiven()) {
                 // Mixes the sudoku a bit without changing the difficulty.
                 SudokuPropagation sudokuPropagation = new SudokuPropagation(gen.getSudoku());
                 sudokuPropagation.randomSampling(1000);

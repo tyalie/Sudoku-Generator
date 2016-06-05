@@ -1,6 +1,7 @@
 package com.georg;
 
-import com.georg.Generator.*;
+import com.georg.Generator.StaticGenerator;
+import com.georg.Generator.SudokuSolver;
 
 public class Main {
 
@@ -12,11 +13,11 @@ public class Main {
         }
     }
 
-    private static void testSudokuGen(Level l) throws ValueFormatException{
+    private static void testSudokuGen(Level l) throws ValueFormatException {
         Sudoku su = StaticGenerator.GenerateSudoku(l);
-        System.out.println(su+"\n\n");
+        System.out.println(su + "\n\n");
         int i = SudokuSolver.solutions(su);
-        assert 1==i : "The sudoku has "+i+" solution(s)";
+        assert 1 == i : "The sudoku has " + i + " solution(s)";
     }
 
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * Created by Georg on 30/05/16.
- *
+ * <p>
  * A class to solve sudokus in various ways.
  * By use of Depth First Search.
  */
@@ -22,7 +22,7 @@ public class SudokuSolver {
      * @return Returns number of solutions.
      */
     @SuppressWarnings("WeakerAccess")
-    public static int solutions(Sudoku sudoku) throws ValueFormatException{
+    public static int solutions(Sudoku sudoku) throws ValueFormatException {
         return DFS(new CompSudoku(sudoku), true);
     }
 
@@ -52,7 +52,7 @@ public class SudokuSolver {
      *               of all possible solution should returned.
      * @return Returns the number of solutions found.
      */
-    private static int DFS(CompSudoku sudoku, boolean end) throws ValueFormatException{
+    private static int DFS(CompSudoku sudoku, boolean end) throws ValueFormatException {
         if (sudoku.isIndexLast())
             return 1;
 
@@ -76,9 +76,10 @@ public class SudokuSolver {
      * result from the
      * {@link #DFSLV(CompSudoku, long, int, int) Depth first seach for Las Vegas}
      * method.
-     *
+     * <p>
      * It also will reset the internal used {@link #cSol counter}
      * and the {@link #lastField buffer field}.
+     *
      * @return Returns the found field.
      */
     static Sudoku getLastField() {
@@ -103,7 +104,7 @@ public class SudokuSolver {
      *                This allows for more diverse fields.
      * @return The sudoku field.
      */
-    static Sudoku DFSLV(CompSudoku sudoku, final long start, final int maxTime, final int maxSol) throws ValueFormatException{
+    static Sudoku DFSLV(CompSudoku sudoku, final long start, final int maxTime, final int maxSol) throws ValueFormatException {
         if (sudoku.isIndexLast())
             return sudoku;
 

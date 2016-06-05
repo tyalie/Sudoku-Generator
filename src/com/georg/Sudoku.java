@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 /**
  * Created by Georg on 30/05/16.
- *
+ * <p>
  * Sudoku class for easy management
  * of a field. Includes important constant
  * variables and methods for field, printing
@@ -64,12 +64,17 @@ public class Sudoku {
      */
     public static final int NAN = -1;
     /**
+     * The difficulty of the sudoku. See
+     * {@link Level}.
+     */
+    private final Level difficulty;
+    /**
      * The field variable. Free fields are
      * {@link #NAN}, any other number should
      * be in the range [1, {@link #MAX_NUM}].
-     *
+     * <p>
      * The order of counting is as follows.
-     *<pre><code>
+     * <pre><code>
      *   +1
      *  i->
      * +--+--+--+
@@ -84,15 +89,10 @@ public class Sudoku {
     protected byte[] field;
 
     /**
-     * The difficulty of the sudoku. See
-     * {@link Level}.
-     */
-    private final Level difficulty;
-
-    /**
      * This initializer generates an sudoku
      * with the field defined by field and
      * the difficulty defined by level.
+     *
      * @param level The difficulty. See {@link Level}.
      * @param field The field.
      * @throws ValueFormatException If the input fieldsize is not matching the hardcoded one.
@@ -108,6 +108,7 @@ public class Sudoku {
      * This initializer generates an empty
      * ({@link #NAN}  filled) field with and
      * sets it level to the input.
+     *
      * @param level The difficulty. See {@link Level}.
      */
     public Sudoku(Level level) {
@@ -128,6 +129,7 @@ public class Sudoku {
      * |  |  |  |
      * +--+--+--+
      * </code></pre>
+     *
      * @param x The x coordinate
      * @param y The y coordinate
      * @return The value.
@@ -138,6 +140,7 @@ public class Sudoku {
 
     /**
      * Get the value at the specified index.
+     *
      * @param index The index.
      * @return The value at the index.
      */
@@ -147,7 +150,7 @@ public class Sudoku {
 
     /**
      * @return The difficulty of this sudoku
-     *  instance.
+     * instance.
      */
     public Level getDifficulty() {
         return difficulty;
@@ -155,6 +158,7 @@ public class Sudoku {
 
     /**
      * The whole field, nonadjustable.
+     *
      * @return The field.
      */
     public byte[] getField() {

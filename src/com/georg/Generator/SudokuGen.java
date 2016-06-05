@@ -98,6 +98,7 @@ public class SudokuGen {
     private Level level;
     /**
      * The list of all fields that can be dug.
+     *
      * @see CanBeDugList
      */
     private CanBeDugList possible;
@@ -108,9 +109,10 @@ public class SudokuGen {
      * and {@link #sudoku}. Where the latter two
      * are influenced by the input.
      * The input instance will not be edited.
+     *
      * @param sudoku The input sudoku.
      */
-    SudokuGen(Sudoku sudoku) throws ValueFormatException{
+    SudokuGen(Sudoku sudoku) throws ValueFormatException {
         this.sudoku = new CompSudoku(sudoku);
         this.rand = new XoRoShiRo128PlusRandom();
         this.level = sudoku.getDifficulty();
@@ -129,9 +131,9 @@ public class SudokuGen {
      * sudoku. It is managing job 1-4.
      *
      * @throws ArithmeticException If a
-     * non-included difficultly is used.
+     *                             non-included difficultly is used.
      */
-    void digHoles() throws ValueFormatException{
+    void digHoles() throws ValueFormatException {
         possible = new CanBeDugList();
         // The minimum amount of total givens. Randomly sampled.
         final int minBound = rand.nextInt(level.getMaxTotalGiven() - level.getMinTotalGiven()) + level.getMinTotalGiven();
@@ -198,7 +200,7 @@ public class SudokuGen {
      */
     //@formatter:on
     private int seq1Left2RightAndTop2Bottom(int lastI) {
-        return (lastI+1)%FIELD_COUNT;
+        return (lastI + 1) % FIELD_COUNT;
     }
 
     //@formatter:off
@@ -219,22 +221,22 @@ public class SudokuGen {
      */
     //@formatter:on
     private int seq2WanderingAlongS(int lastI) {
-        if (lastI<0)
+        if (lastI < 0)
             return 0;
         int i;
-        if( (lastI/FIELD_SIZE)%2==0 ) {
-            if ( (lastI+1)%FIELD_SIZE==0 )
-                i = lastI+FIELD_SIZE;
+        if ((lastI / FIELD_SIZE) % 2 == 0) {
+            if ((lastI + 1) % FIELD_SIZE == 0)
+                i = lastI + FIELD_SIZE;
             else
-                i = lastI+1;
+                i = lastI + 1;
         } else {
-            if ( lastI%FIELD_SIZE==0 )
-                i = lastI+FIELD_SIZE;
+            if (lastI % FIELD_SIZE == 0)
+                i = lastI + FIELD_SIZE;
             else
-                i = lastI-1;
+                i = lastI - 1;
         }
 
-        return i%FIELD_COUNT;
+        return i % FIELD_COUNT;
     }
 
     //@formatter:off
@@ -255,35 +257,34 @@ public class SudokuGen {
      */
     //@formatter:on
     private int seq3JumpingOneCell(int lastI) {
-        if(lastI<0)
+        if (lastI < 0)
             return 0;
         int i;
         /* If somebody knows a better looking
          * solution. PLEASE implement it. I don't
          * like this decision code here.
          */
-        if( (lastI/FIELD_SIZE)%2==0) {
-            if ( (lastI+1)%FIELD_SIZE == 0 )
-                i = lastI+FIELD_SIZE-1;
-            else if ( (lastI+2)%FIELD_SIZE == 0 )
-                i = lastI+FIELD_SIZE+1;
+        if ((lastI / FIELD_SIZE) % 2 == 0) {
+            if ((lastI + 1) % FIELD_SIZE == 0)
+                i = lastI + FIELD_SIZE - 1;
+            else if ((lastI + 2) % FIELD_SIZE == 0)
+                i = lastI + FIELD_SIZE + 1;
             else
-                i = lastI+2;
+                i = lastI + 2;
         } else {
-            if( lastI%FIELD_SIZE == 1 )
-                i = lastI+FIELD_SIZE-1;
-            else if( lastI%FIELD_SIZE == 0 )
-                i = lastI+FIELD_SIZE+1;
+            if (lastI % FIELD_SIZE == 1)
+                i = lastI + FIELD_SIZE - 1;
+            else if (lastI % FIELD_SIZE == 0)
+                i = lastI + FIELD_SIZE + 1;
             else
-                i = lastI-2;
+                i = lastI - 2;
         }
-        if(i%FIELD_COUNT!=i)
-            i = (i+1)%2;
+        if (i % FIELD_COUNT != i)
+            i = (i + 1) % 2;
         return i;
     }
 
 
-    //@formatter:off
     /**
      * There's no sequence here.
      * All this one does is just simply
@@ -292,7 +293,6 @@ public class SudokuGen {
      * This is sequence 4 on the paper.
      * @return The next index in the series.
      */
-    //@formatter:on
     private int seq4RandomizingGlobally() {
         int i;
         while (possible.isFree()) {
@@ -312,12 +312,13 @@ public class SudokuGen {
      * other allowed number at this index.
      * In the paper it is called: Reduction to
      * absurdity.
-     * @param tmp The digged sudoku.
+     *
+     * @param tmp  The digged sudoku.
      * @param orig The original character on the
      *             currently free hole.
      * @return True if it is unique.
      */
-    private boolean isUnique(CompSudoku tmp, byte orig) throws ValueFormatException{
+    private boolean isUnique(CompSudoku tmp, byte orig) throws ValueFormatException {
         List<CompSudoku> nodes = tmp.expand();
         for (CompSudoku node : nodes) {
             if (node.getAtIndex(tmp.getIndex()) != orig) {
