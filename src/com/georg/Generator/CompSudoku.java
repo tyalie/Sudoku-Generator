@@ -45,6 +45,18 @@ class CompSudoku extends Sudoku {
     }
 
     /**
+     * This constructor creates a copy of another
+     * instance of a {@link CompSudoku}
+     *
+     * @param sudoku The sudoku.
+     */
+    @SuppressWarnings("unused")
+    private CompSudoku(CompSudoku sudoku) throws ValueFormatException {
+        this(sudoku.getDifficulty(), sudoku.getField().clone());
+        index = sudoku.index;
+    }
+
+    /**
      * Creates an index from an x, y position.
      *
      * @param x The x position.
@@ -144,32 +156,24 @@ class CompSudoku extends Sudoku {
      * could be childs from the local index.
      */
     List<CompSudoku> expand() throws ValueFormatException {
-        try {
         /* All numbers. Create boolean vector,
          * where each index represents a
          * number that is equal to the index+1.
          */
-            Boolean[] possible = new Boolean[MAX_NUM];
-            Arrays.fill(possible, true);
-            possible = rule_3(rule_2(rule_1(possible)));
+        Boolean[] possible = new Boolean[MAX_NUM];
+        Arrays.fill(possible, true);
+        possible = rule_3(rule_2(rule_1(possible)));
 
-            List<CompSudoku> ret = new ArrayList<>();
-            for (byte i = 1; i <= MAX_NUM; i++) {
-                if (possible[i - 1]) {
-                    CompSudoku c = new CompSudoku(this);
-                    c.setField(i);
-                    //c.resetIndex();
-                    //c.setIndex(index);
-                    //c.moveNext();
-                    ret.add(c);
-                }
+        List<CompSudoku> ret = new ArrayList<>();
+        for (byte i = 1; i <= MAX_NUM; i++) {
+            if (possible[i - 1]) {
+                CompSudoku c = new CompSudoku(this);
+                c.setField(i);
+                c.resetIndex();
+                ret.add(c);
             }
-            return ret;
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-        return null;
+        return ret;
     }
 
     /**
@@ -339,18 +343,5 @@ class CompSudoku extends Sudoku {
      */
     void setIndex(int index) {
         this.index = index;
-    }
-
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        Sudoku tmp = (Sudoku)super.clone();
-        try {
-            CompSudoku ret = new CompSudoku(tmp.getDifficulty(), tmp.getField());
-            ret.index = this.index;
-            return ret;
-        } catch (ValueFormatException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 }
