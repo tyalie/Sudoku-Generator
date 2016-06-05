@@ -328,5 +328,4 @@ public class SudokuGen {
         }
         return true;
     }
-
 }

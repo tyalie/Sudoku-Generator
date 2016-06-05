@@ -108,8 +108,8 @@ public class SudokuSolver {
         if (sudoku.isIndexLast())
             return sudoku;
 
-        if (System.currentTimeMillis() - start > maxTime)
-            return null;
+        //if (System.currentTimeMillis() - start > maxTime)
+        //    return null;
 
         List<CompSudoku> compSudokus = sudoku.expand();
         if (compSudokus.size() == 0)

@@ -10,7 +10,7 @@ import java.util.Arrays;
  * variables and methods for field, printing
  * and level.
  */
-public class Sudoku {
+public class Sudoku implements Cloneable {
     /**
      * The field size.
      * Because sudoku is squared in my
@@ -56,7 +56,7 @@ public class Sudoku {
      * It is:<br>
      * &nbsp&nbsp&nbsp[1,MAX_NUM]
      */
-    public static final int MAX_NUM = 9;
+    public static final int MAX_NUM = FIELD_SIZE;
 
     /**
      * General constant for NAN values on
@@ -181,11 +181,21 @@ public class Sudoku {
 
 
             if (field[i] != NAN)
-                out += field[i];
+                out +=  String.format("%x", field[i]+((MAX_NUM==16)?-1:0));
             else
                 out += " ";
         }
 
         return out;
     }
-}
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        super.clone();
+        try {
+            return new Sudoku(difficulty, field.clone());
+        } catch (ValueFormatException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }}
