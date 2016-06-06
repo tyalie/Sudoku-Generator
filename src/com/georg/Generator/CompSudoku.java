@@ -14,7 +14,7 @@ import java.util.List;
  * A subclass of {@link Sudoku} specialised
  * for doing computations.
  */
-class CompSudoku extends Sudoku {
+public class CompSudoku extends Sudoku {
     /**
      * The current index variable. This method
      * of accessing the sudoku field is especially
@@ -39,7 +39,7 @@ class CompSudoku extends Sudoku {
      *
      * @param sudoku The sudoku.
      */
-    CompSudoku(Sudoku sudoku) throws ValueFormatException {
+    public CompSudoku(Sudoku sudoku) throws ValueFormatException {
         this(sudoku.getDifficulty(), sudoku.getField());
         moveNext();
     }

@@ -82,7 +82,7 @@ public class SudokuSolver {
      *
      * @return Returns the found field.
      */
-    static Sudoku getLastField() {
+    public static Sudoku getLastField() {
         cSol = 0;
         Sudoku su = lastField;
         lastField = null;
@@ -104,7 +104,7 @@ public class SudokuSolver {
      *                This allows for more diverse fields.
      * @return The sudoku field.
      */
-    static Sudoku DFSLV(CompSudoku sudoku, final long start, final int maxTime, final int maxSol) throws ValueFormatException {
+    public static Sudoku DFSLV(CompSudoku sudoku, final long start, final int maxTime, final int maxSol) throws ValueFormatException {
         if (sudoku.isIndexLast())
             return sudoku;
 

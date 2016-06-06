@@ -17,6 +17,11 @@ import com.georg.Generator.SudokuGen;
  * </ul>
  */
 public enum Level {
+
+    /**
+     * No value. Should not be tried to used in any algorithm.
+     */
+    None("None", -1,-1,-1),
     /**
      * Extremly easy.
      * <table>
