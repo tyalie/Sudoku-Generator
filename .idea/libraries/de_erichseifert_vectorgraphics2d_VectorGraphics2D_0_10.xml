@@ -3,8 +3,10 @@
     <properties maven-id="de.erichseifert.vectorgraphics2d:VectorGraphics2D:0.10" />
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/VectorGraphics2D-0.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/VectorGraphics2D-0.10.jar!/" />
     </CLASSES>
     <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/lib/VectorGraphics2D-0.10-javadoc.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/VectorGraphics2D-0.10-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES />
