@@ -183,7 +183,7 @@ public class CompSudoku extends Sudoku {
      * @return List of all possible values
      * at the current index.
      */
-    List<Byte> getAvailable() {
+    public List<Byte> getAvailable() {
         /* All numbers. Create boolean vector,
          * where each index represents a
          * number that is equal to the index+1.
@@ -301,7 +301,7 @@ public class CompSudoku extends Sudoku {
      * @param index The index.
      * @return The cloned, edited sudoku.
      */
-    CompSudoku digClone(int index) throws ValueFormatException {
+    public CompSudoku digClone(int index) throws ValueFormatException {
         CompSudoku ret = new CompSudoku(this);
         ret.field[index] = NAN;
         ret.setIndex(index);
