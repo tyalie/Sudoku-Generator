@@ -15,16 +15,18 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import static com.georg.Sudoku.NAN;
+
 /**
  * Created by Georg on 05/06/16.
  */
-public class UserInterface extends JFrame implements PropertyChangeListener{
+public class UserInterface extends JFrame {
+    static final Color warnColor = new Color(254, 114, 85);
+
     private JPanel panel;
     private JPanel rootPanel;
     private JPanel sudokuField;
@@ -38,6 +40,7 @@ public class UserInterface extends JFrame implements PropertyChangeListener{
     private JButton solveAllButton;
     private JButton saveButton;
     private JButton createTerminalPatternButton;
+    private JButton quitButton;
     private List<SudokuSpinner> sudokuTextAreas;
     private GUISudoku sudoku;
 
@@ -47,11 +50,15 @@ public class UserInterface extends JFrame implements PropertyChangeListener{
         return sudoku;
     }
 
+    public List<SudokuSpinner> getSudokuTextAreas() {
+        return sudokuTextAreas;
+    }
+
     public UserInterface() {
         setTitle("Sudoku Generator");
 
         Thread.setDefaultUncaughtExceptionHandler((Thread t, Throwable e) -> {
-            if (Thread.currentThread().getId() == 1)
+            if (!(e instanceof  java.lang.ThreadDeath))
                 printErrorMessage(e);
         });
 
@@ -59,8 +66,7 @@ public class UserInterface extends JFrame implements PropertyChangeListener{
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         pack();
-        setMinimumSize(getSize());
-        setMaximumSize(getSize());
+        setResizable(false);
         setVisible(true);
 
         // Clear button
@@ -73,12 +79,13 @@ public class UserInterface extends JFrame implements PropertyChangeListener{
             if (l != Level.None)
                 difficultyCombo.addItem(l);
         }
+        difficultyCombo.setSelectedItem(Level.Easy);
 
-        generateButton.addActionListener((ActionEvent e) -> triggerSudokuGen());
+        generateButton.addActionListener((ActionEvent e) -> sudokuButtonManagement(3));
 
-        solveButton.addActionListener((ActionEvent e) -> solveSudoku());
+        solveButton.addActionListener((ActionEvent e) -> sudokuButtonManagement(2));
 
-        solveAllButton.addActionListener((ActionEvent e) -> solveAllSudoku());
+        solveAllButton.addActionListener((ActionEvent e) -> sudokuButtonManagement(0));
 
         saveButton.addActionListener((ActionEvent e) -> {
             JFileChooser fileChooser = new JFileChooser(lastDir);
@@ -109,7 +116,12 @@ public class UserInterface extends JFrame implements PropertyChangeListener{
             }
         });
 
-        createTerminalPatternButton.addActionListener((ActionEvent e) -> createTerminalPattern());
+        createTerminalPatternButton.addActionListener((ActionEvent e) -> sudokuButtonManagement(1));
+
+        quitButton.addActionListener(e -> {
+            dispose();
+            System.exit(0);
+        });
     }
 
     private void createUIComponents() {
@@ -141,100 +153,77 @@ public class UserInterface extends JFrame implements PropertyChangeListener{
         }
     }
 
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        System.out.println(evt.toString());
-    }
-
-    private void triggerSudokuGen() {
+    private void sudokuButtonManagement(int choice) {
         Thread thread = new Thread(() -> {
             try {
-                sudoku = new GUISudoku(StaticGenerator.GenerateSudoku((Level)difficultyCombo.getSelectedItem()));
-                GeneratingDialog.externalCancel();
-            } catch (ValueFormatException exception) {
-                printErrorMessage(exception);
-            }
-        });
-        new GeneratingDialog(thread);
-        sudokuUpdate();
-    }
+                if (sudoku.freeFields() == 0 && choice!=1 && choice!=3)
+                    JOptionPane.showMessageDialog(rootPanel, "The sudoku has no free fields!", "Nothing to do", JOptionPane.INFORMATION_MESSAGE);
+                else {
 
-    private void solveSudoku() {
-        Thread thread = new Thread(() -> {
-            if (sudoku.freeFields() == 0) {
-                JOptionPane.showMessageDialog(rootPanel, "The sudoku has no free fields!", "Nothing to solve", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                try {
+                    int i = -1;
+
                     long start = System.currentTimeMillis();
-                    SudokuSolver.DFSLV(new CompSudoku(sudoku), System.currentTimeMillis() * 10, 0, 1);
-                    long end = System.currentTimeMillis();
+                    switch (choice) {
+                        case 0:
+                            i = SudokuSolver.solutions(sudoku);
+                            break;
+                        case 1:
+                            sudoku = new GUISudoku(LasVegasAlgorithm.LasVegas(Level.None));
+                            break;
+                        case 2:
+                            SudokuSolver.DFSLV(new CompSudoku(sudoku), System.currentTimeMillis() * 10, 0, 1);
+                            break;
+                        case 3:
+                            sudoku = new GUISudoku(StaticGenerator.GenerateSudoku((Level)difficultyCombo.getSelectedItem()));
+                            break;
+                    }
 
-                    Sudoku su = SudokuSolver.getLastField();
-                    if (su != null) {
-                        sudoku = new GUISudoku(su);
-                        JOptionPane.showMessageDialog(rootPanel, "Possible solution generated successfully.\n"+
-                                        "The algorithm needed: "+ formatTime(end-start),
-                                "Number of solutions", JOptionPane.INFORMATION_MESSAGE);
-                    } else
-                        JOptionPane.showMessageDialog(rootPanel, "The sudoku couldn't be solved!", "Sudoku Error", JOptionPane.ERROR_MESSAGE);
-                } catch (ValueFormatException exception) {
-                    printErrorMessage(exception);
+                    long end = System.currentTimeMillis();
+                    GeneratingDialog.externalCancel();
+
+                    String win = "";
+                    String msg = "";
+                    boolean show = true;
+                    switch (choice) {
+                        case 0:
+                            msg = "The sudoku has exactly: " + i + " solutions.";
+                            win = "Number of solutions";
+                            break;
+                        case 1:
+                            msg = "Terminal pattern generated successfully.";
+                            win = "Terminal Pattern created";
+                            break;
+                        case 2:
+                            Sudoku su = SudokuSolver.getLastField();
+                            if (su!=null) {
+                                sudoku = new GUISudoku(su);
+                                msg = "Possible solution generated successfully.";
+                                win = "Solution generated";
+                            } else {
+                                msg = "The sudoku couldn't be solved!";
+                                win = "Sudoku Error";
+                            }
+                            break;
+                        case 3:
+                            show=false;
+                            break;
+                    }
+
+                    if (show)
+                        JOptionPane.showMessageDialog(rootPanel, msg +
+                                        "\nThe algorithm needed: " + formatTime(end - start),
+                                win, win.toLowerCase().contains("error")?JOptionPane.ERROR_MESSAGE:JOptionPane.INFORMATION_MESSAGE);
                 }
+            } catch (ValueFormatException e) {
+                GeneratingDialog.externalCancel();
+                printErrorMessage(e);
             }
-            GeneratingDialog.externalCancel();
         });
         new GeneratingDialog(thread);
         sudokuUpdate();
     }
 
-    private void solveAllSudoku() {
-        Thread thread = new Thread(() -> {
-            try {
-                long start = System.currentTimeMillis();
-                int i = SudokuSolver.solutions(sudoku);
-                long end = System.currentTimeMillis();
-                GeneratingDialog.externalCancel();
-
-                String msg = "The sudoku has exactly: " + i + " solutions.\n";
-                if (i<1)
-                    msg = "The sudoku has no valid solution.\n";
-
-                JOptionPane.showMessageDialog(rootPanel, msg+
-                                "The algorithm needed: "+ formatTime(end-start),
-                        "Number of solutions", JOptionPane.INFORMATION_MESSAGE);
-            } catch (ValueFormatException e) {
-                GeneratingDialog.externalCancel();
-                printErrorMessage(e);
-            }
-
-        });
-        new GeneratingDialog(thread);
-    }
-
-    private void createTerminalPattern() {
-        Thread thread = new Thread(() -> {
-            try {
-                long start = System.currentTimeMillis();
-                sudoku = new GUISudoku(LasVegasAlgorithm.LasVegas(Level.None));
-                long end = System.currentTimeMillis();
-                GeneratingDialog.externalCancel();
-
-                JOptionPane.showMessageDialog(rootPanel, "Terminal pattern generated successfully.\n"+
-                                "The algorithm needed: "+ formatTime(end-start),
-                        "Number of solutions", JOptionPane.INFORMATION_MESSAGE);
-            } catch (ValueFormatException e) {
-                GeneratingDialog.externalCancel();
-                printErrorMessage(e);
-            } finally {
-                sudokuUpdate();
-            }
-
-        });
-        new GeneratingDialog(thread);
-    }
-
-
-    private void printErrorMessage(Throwable e) {
+    void printErrorMessage(Throwable e) {
         JOptionPane.showMessageDialog(rootPanel, e.getMessage(), "Error!", JOptionPane.ERROR_MESSAGE);
     }
 
@@ -246,7 +235,22 @@ public class UserInterface extends JFrame implements PropertyChangeListener{
         long mm  = hh%60;
         hh/=60;
 
-        return String.format(Locale.US, "%dh %02dm %02ds %03dms", hh, mm, ss, SSS);
-    }
+        String format;
+        Object[] in;
+        if(hh!=0) {
+            format = "%dh %02dm %02ds %03dms";
+            in = new Object[]{hh,mm,ss,SSS};
+        } else if(mm!=0) {
+            format = "%02dm %02ds %03dms";
+            in = new Object[]{mm,ss,SSS};
+        } else if(ss!=0) {
+            format = "%02ds %03dms";
+            in = new Object[]{ss,SSS};
+        } else {
+            format = "%03dms";
+            in = new Object[]{SSS};
+        }
 
+        return String.format(Locale.US, format, in);
+    }
 }

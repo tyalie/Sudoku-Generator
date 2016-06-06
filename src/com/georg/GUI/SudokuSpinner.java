@@ -20,7 +20,7 @@ class SudokuSpinner extends JSpinner {
         super(model);
         this.ID = ID;
 
-        updateColor();
+        updateColor(false);
 
         JFormattedTextField textField = ((JSpinner.DefaultEditor)getEditor()).getTextField();
         textField.setOpaque(false);
@@ -61,11 +61,14 @@ class SudokuSpinner extends JSpinner {
         });
     }
 
-    void updateColor() {
-        if ((Integer)getValue() == 0)
+    void updateColor(boolean inval) {
+        if ((Integer) getValue() == 0)
             setBackground(Color.LIGHT_GRAY);
+        else if (inval)
+            setBackground(UserInterface.warnColor);
         else
-            setBackground(new Color(0xee,0xee,0xee));
+            setBackground(new Color(0xee, 0xee, 0xee));
+
     }
 
     void setEditable(boolean value) {

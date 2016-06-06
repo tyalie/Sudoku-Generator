@@ -726,7 +726,7 @@
       <workItem from="1465004822407" duration="21006000" />
       <workItem from="1465158105478" duration="2884000" />
       <workItem from="1465161616982" duration="27855000" />
-      <workItem from="1465234110623" duration="2069000" />
+      <workItem from="1465234110623" duration="2086000" />
     </task>
     <task id="LOCAL-00001" summary="- created Git project&#10;- created basic class structure&#10;- added test method for SudokuSolver in Main.java">
       <created>1464639960408</created>
@@ -812,11 +812,18 @@
       <option name="project" value="LOCAL" />
       <updated>1465254536883</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="- added live error view&#10;- fixed bugs&#10;">
+      <created>1465254576420</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1465254576420</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91461000" />
+    <option name="totallyTimeSpent" value="91478000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -907,7 +914,8 @@
     <MESSAGE value="- rollback of CompSudoku to working version." />
     <MESSAGE value="- added whole Swing GUI&#10;- added module GUI" />
     <MESSAGE value="- added live error view&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="- added live error view&#10;" />
+    <MESSAGE value="- added live error view&#10;- fixed bugs&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="- added live error view&#10;- fixed bugs&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,8 +1,13 @@
 package com.georg.GUI;
 
+import com.georg.Generator.CanBeDugList;
+import com.georg.Generator.CompSudoku;
 import com.georg.Level;
 import com.georg.Sudoku;
 import com.georg.ValueFormatException;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Georg on 05/06/16.
@@ -37,5 +42,18 @@ public class GUISudoku extends Sudoku {
             if (v==NAN)
                 i++;
         return i;
+    }
+
+    public CanBeDugList getInvalid() throws ValueFormatException{
+        CompSudoku su = new CompSudoku(this);
+        CanBeDugList ret = new CanBeDugList();
+
+        for (int i = 0; i < Sudoku.FIELD_COUNT; i++) {
+            CompSudoku dug = su.digClone(i);
+            List<Byte> avail = dug.getAvailable();
+            if ( !avail.contains(su.getAtIndex(i)) )
+                ret.setAtIndex(i, false);
+        }
+        return ret;
     }
 }

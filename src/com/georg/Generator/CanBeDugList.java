@@ -17,7 +17,7 @@ import static com.georg.Sudoku.FIELD_COUNT;
  * See number 4: "Pruning optimization"
  * in the paper.
  */
-class CanBeDugList {
+public class CanBeDugList {
 
     /**
      * A representation of my field with
@@ -34,11 +34,15 @@ class CanBeDugList {
      */
     private int count;
 
+    public int getCount() {
+        return count;
+    }
+
     /**
      * Initialises list and fills
      * all positions with True.
      */
-    CanBeDugList() {
+    public CanBeDugList() {
         field = new boolean[FIELD_COUNT];
         Arrays.fill(field, true);
         count = FIELD_COUNT;
@@ -51,7 +55,7 @@ class CanBeDugList {
      * @return True if there are free fields,
      * if else than False.
      */
-    boolean isFree() {
+    public boolean isFree() {
         return count > 0;
     }
 
@@ -63,7 +67,7 @@ class CanBeDugList {
      * @return Returns the value of the field
      * at i.
      */
-    boolean getAtIndex(int i) {
+    public boolean getAtIndex(int i) {
         return field[i];
     }
 
@@ -74,7 +78,7 @@ class CanBeDugList {
      * @param i The index
      * @param v The value to write on index i.
      */
-    void setAtIndex(final int i, final boolean v) {
+    public void setAtIndex(final int i, final boolean v) {
         if (field[i] != v) {
             count += v ? 1 : -1;
             field[i] = v;
