@@ -7,7 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64da151d-c18d-42ed-9992-418fd366d48c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Sudoku Summative/com/georg/Generator/CompSudoku.class" afterPath="$PROJECT_DIR$/out/production/Sudoku Summative/com/georg/Generator/CompSudoku.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/georg/GUI/GUISudoku.java" afterPath="$PROJECT_DIR$/src/com/georg/GUI/GUISudoku.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/georg/GUI/SudokuChangeListener.java" afterPath="$PROJECT_DIR$/src/com/georg/GUI/SudokuChangeListener.java" />
@@ -15,7 +14,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/georg/GUI/UserInterface.form" afterPath="$PROJECT_DIR$/src/com/georg/GUI/UserInterface.form" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/georg/GUI/UserInterface.java" afterPath="$PROJECT_DIR$/src/com/georg/GUI/UserInterface.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/georg/Generator/CanBeDugList.java" afterPath="$PROJECT_DIR$/src/com/georg/Generator/CanBeDugList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/georg/Generator/CompSudoku.java" afterPath="$PROJECT_DIR$/src/com/georg/Generator/CompSudoku.java" />
     </list>
     <ignored path="Sudoku Summative.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -66,9 +64,10 @@
       <file leaf-file-name="CanBeDugList.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/georg/Generator/CanBeDugList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="36" column="27" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
+            <state relative-caret-position="411">
+              <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
               <folding>
+                <element signature="e#900#901#0" expanded="true" />
                 <element signature="e#928#929#0" expanded="true" />
               </folding>
             </state>
@@ -727,7 +726,7 @@
       <workItem from="1465004822407" duration="21006000" />
       <workItem from="1465158105478" duration="2884000" />
       <workItem from="1465161616982" duration="27855000" />
-      <workItem from="1465234110623" duration="2029000" />
+      <workItem from="1465234110623" duration="2069000" />
     </task>
     <task id="LOCAL-00001" summary="- created Git project&#10;- created basic class structure&#10;- added test method for SudokuSolver in Main.java">
       <created>1464639960408</created>
@@ -806,11 +805,18 @@
       <option name="project" value="LOCAL" />
       <updated>1465189087509</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="- added live error view&#10;">
+      <created>1465254536883</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1465254536883</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91421000" />
+    <option name="totallyTimeSpent" value="91461000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -900,7 +906,8 @@
     <MESSAGE value="- reformatted code." />
     <MESSAGE value="- rollback of CompSudoku to working version." />
     <MESSAGE value="- added whole Swing GUI&#10;- added module GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="- added whole Swing GUI&#10;- added module GUI" />
+    <MESSAGE value="- added live error view&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="- added live error view&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1310,9 +1317,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/georg/Generator/CanBeDugList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="36" column="27" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
+        <state relative-caret-position="411">
+          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
           <folding>
+            <element signature="e#900#901#0" expanded="true" />
             <element signature="e#928#929#0" expanded="true" />
           </folding>
         </state>
