@@ -28,37 +28,61 @@ import com.georg.Generator.CanBeDugList;
 import com.georg.Sudoku;
 import com.georg.ValueFormatException;
 
-import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import java.awt.*;
 
 /**
- * Created by Georg A. Friedrich on 05/06/16
+ * Created by Georg on 05/06/16.
+ * <p>
+ * Class to create trigger, that is
+ * activated if one number field was edited,
+ * that includes user change, but also
+ * change of the content by the system.
  */
 class SudokuChangeListener implements ChangeListener {
     private UserInterface orig;
 
+    /**
+     * @param orig The triggering class
+     */
     SudokuChangeListener(UserInterface orig) {
         this.orig = orig;
     }
 
+    /**
+     * The state of one of the sudoku fields changed.
+     * This method marks automatically every invalid
+     * number field red and will change the sudoku field.
+     *
+     * @param e The change event.
+     */
     @Override
     public void stateChanged(ChangeEvent e) {
         if (e.getSource() instanceof SudokuSpinner) {
-            SudokuSpinner spinner = (SudokuSpinner)e.getSource();
-            if (orig.getSudoku()!= null)
-                orig.getSudoku().setAtIndex(spinner.getID(), ((Integer)spinner.getValue()).byteValue() );
+            SudokuSpinner spinner = (SudokuSpinner) e.getSource();
+            if (orig.getSudoku() != null) {
+                // Change the sudoku field to the current value.
+                orig.getSudoku().setAtIndex(spinner.getID(), ((Integer) spinner.getValue()).byteValue());
 
-            try {
-                CanBeDugList inval = orig.getSudoku().getInvalid();
-                if (inval.getCount() < Sudoku.FIELD_COUNT || spinner.getBackground() == UserInterface.warnColor) {
-                    for (int i = 0; i < Sudoku.FIELD_COUNT; i++)
-                        orig.getSudokuTextAreas().get(i).updateColor(!inval.getAtIndex(i));
-                } else
-                    spinner.updateColor(false);
-            } catch (ValueFormatException err) {
-                orig.printErrorMessage(err);
+                try {
+                    // Generates the list of all invalid fields
+                    CanBeDugList inval = orig.getSudoku().getInvalid();
+                    /* IF there are problems it will loop through
+                     * every single spinner view and set the color
+                     * correspondingly.
+                     *
+                     * This action will also be triggered when the
+                     * current was a warning tile before. This
+                     * erases every color on the last field on the sudoku.
+                     */
+                    if (inval.getCount() < Sudoku.FIELD_COUNT || spinner.getBackground() == UserInterface.warnColor) {
+                        for (int i = 0; i < Sudoku.FIELD_COUNT; i++)
+                            orig.getSudokuTextAreas().get(i).updateColor(!inval.getAtIndex(i));
+                    } else // change own color if not.
+                        spinner.updateColor(false);
+                } catch (ValueFormatException err) {
+                    orig.printErrorMessage(err);
+                }
             }
         }
     }

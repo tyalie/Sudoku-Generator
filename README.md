@@ -5,7 +5,7 @@
   - Easy
   - Medium
   - Hard
-  - Devil's Playground</b> (you would be the first to solve one of those I know)
+  - Devil's Playground</b> (you would be the first to solve one of those)
  
 The GUI also gives access to internal features used while generating the sudoku. So is it possible to solve any sudoku, get the number of unique sudokus that could be generated with the input (A correctly solvable sudoku has just one solution) and create random terminal patterns. 
 
@@ -37,7 +37,7 @@ An example txt output.
 An example pdf file with the same sudoku field.
 
 # How to compile
-The program is writen with the Intellij IDEA and uses its standard compiler, but also its GUI Designer. Using this IDE will also automaticly download all depencies. But the code can also be compiled with any another compiler running with JDK version 1.8, as long as the GUI Designer methods are correctly interpreted. The libraries used in this project are:<br><br>
+The program is writen with the IntelliJ IDEA and uses its standard compiler, but also its GUI Designer. Using this IDE will also automaticly download all depencies. But the code can also be compiled with any another compiler running with JDK version 1.8, as long as the GUI Designer methods are correctly interpreted. The libraries used in this project are:<br><br>
 
 <pre>de.erichseifert.vectorgraphics2d:VectorGraphics2D:0.10</pre>
 This library is used to create vector PDFs, it extends the Graphics2D class<br>

@@ -205,7 +205,7 @@ public class Sudoku implements Cloneable {
 
 
             if (field[i] != NAN)
-                out +=  String.format("%x", field[i]+((MAX_NUM==16)?-1:0));
+                out += String.format("%x", field[i] + ((MAX_NUM == 16) ? -1 : 0));
             else
                 out += " ";
         }
@@ -222,4 +222,5 @@ public class Sudoku implements Cloneable {
             e.printStackTrace();
         }
         return null;
-    }}
+    }
+}

@@ -25,15 +25,48 @@
 package com.georg.GUI;
 
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
-
+/**
+ * Created by Georg on 05/06/16.
+ * <p>
+ * This dialog can manage automatically
+ * a thread and should always be displayed
+ * if long calculations are done asynchronously
+ * in the foreground.
+ * <p>
+ * Uses the deprecated {@link Thread#stop()},
+ * because its easier to implement and doesn't
+ * display a risk in this case.
+ */
 public class GeneratingDialog extends JDialog {
+    /**
+     * Holds the last instance. Used to
+     * close this window when the thread
+     * finishes its task, by triggering a
+     * corresponding method in the thread class.
+     */
+    private static GeneratingDialog lastM;
+    /* By IntelliJ's GUI Designer
+     * generated variables.*/
     private JPanel contentPane;
     private JButton buttonCancel;
 
-    private static GeneratingDialog lastM;
-
+    /**
+     * Create an instance of this class will
+     * open an all-blocking dialog window that
+     * informs the user about current current
+     * calculations.
+     * <p>
+     * In the background it will start the
+     * thread and init the action listeners for
+     * close and "cancel" actions. Those will force
+     * stop the thread by using the {@link Thread#stop()}
+     * method.
+     *
+     * @param sudokuGen A not started thread instance.
+     */
     GeneratingDialog(final Thread sudokuGen) {
         lastM = this;
         sudokuGen.start();
@@ -50,22 +83,37 @@ public class GeneratingDialog extends JDialog {
         });
 
         pack();
-        setMinimumSize(getSize());
-        setMaximumSize(getSize());
+        setResizable(false);
         setVisible(true);
     }
 
-    @SuppressWarnings("deprecation")
-    private void onCancel(Thread sudokuGen) {
-        if (sudokuGen!=null)
-            sudokuGen.stop();
-        dispose();
+    /**
+     * Should be triggered by the
+     * calculation thread, if the
+     * task is done. This will close
+     * window and set the underlying
+     * GUI free again.
+     */
+    static void externalCancel() {
+        if (lastM != null)
+            lastM.onCancel(null);
+        lastM = null;
     }
 
-    static void externalCancel() {
-        if (lastM!=null)
-            lastM.onCancel(null);
-        lastM=null;
+    /**
+     * This method is triggered to
+     * cancel the window and the thread.
+     * <p>
+     * Uses deprecated
+     * {@link Thread#stop()}.
+     *
+     * @param sudokuGen The thread instance.
+     */
+    @SuppressWarnings("deprecation")
+    private void onCancel(Thread sudokuGen) {
+        if (sudokuGen != null)
+            sudokuGen.stop();
+        dispose();
     }
 
 }

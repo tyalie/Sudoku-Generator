@@ -58,10 +58,6 @@ public class CanBeDugList {
      */
     private int count;
 
-    public int getCount() {
-        return count;
-    }
-
     /**
      * Initialises list and fills
      * all positions with True.
@@ -70,6 +66,10 @@ public class CanBeDugList {
         field = new boolean[FIELD_COUNT];
         Arrays.fill(field, true);
         count = FIELD_COUNT;
+    }
+
+    public int getCount() {
+        return count;
     }
 
     /**

@@ -27,7 +27,8 @@ package com.georg;
 /**
  * Created by Georg on 04/06/16.
  * <p>
- * Custom Error.
+ * Custom Error, explains that the
+ * input value has the wrong format.
  */
 public class ValueFormatException extends Exception {
     public ValueFormatException(String msg) {

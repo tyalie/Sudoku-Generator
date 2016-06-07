@@ -30,49 +30,94 @@ import com.georg.Level;
 import com.georg.Sudoku;
 import com.georg.ValueFormatException;
 
-import java.util.Arrays;
 import java.util.List;
 
-public class GUISudoku extends Sudoku {
-    public GUISudoku(Level level, byte[] field) throws ValueFormatException {
+/**
+ * Created by Georg on 05/06/16.
+ * <p>
+ * Class for better access on the sudoku
+ * in the GUI module.
+ * Auto transforms 0 into NAN's and v.v.
+ */
+class GUISudoku extends Sudoku {
+    GUISudoku(Level level, byte[] field) throws ValueFormatException {
         super(level, field);
     }
 
-    public GUISudoku(Level level) {
+    GUISudoku(Level level) {
         super(level);
     }
 
-    public void setAtIndex(int index, byte value) {
-        if (value==0)
+    /**
+     * Transforms input sudoku into a GUISudoku.
+     *
+     * @param sudoku The input sudoku
+     * @throws ValueFormatException If the input is wrong.
+     */
+    GUISudoku(Sudoku sudoku) throws ValueFormatException {
+        super(sudoku.getDifficulty(), sudoku.getField());
+    }
+
+    /**
+     * Sets the value on the specified index
+     * in the sudoku field. Automatically
+     * transforms any 0 as value input into
+     * a NAN.
+     *
+     * @param index The index
+     * @param value The value [0, {@link Sudoku#MAX_NUM MAX_NUM}]
+     */
+    void setAtIndex(int index, byte value) {
+        if (value == 0)
             field[index] = NAN;
         else
             field[index] = value;
     }
 
-    public GUISudoku(Sudoku sudoku) throws ValueFormatException{
-        super(sudoku.getDifficulty(), sudoku.getField());
+    /**
+     * Gets the value at the index index.
+     * Returns zero at every NAN.
+     *
+     * @param index The index
+     * @return The value at the index [0, {@link Sudoku#MAX_NUM MAX_NUM}]
+     */
+    byte getAtIndexN(int index) {
+        return (field[index] == NAN) ? 0 : field[index];
     }
 
-    public byte getAtIndexN(int index) {
-        return (field[index]==NAN)?0:field[index];
-    }
-
-    public int freeFields() {
-        int i=0;
+    /*
+     * @return the amount of free fields
+     *      / NAN values in the field
+     */
+    int freeFields() {
+        int i = 0;
         for (byte v : field)
-            if (v==NAN)
+            if (v == NAN)
                 i++;
         return i;
     }
 
-    public CanBeDugList getInvalid() throws ValueFormatException{
+    /**
+     * Returns a list of all number on the field
+     * that are breaking one of the following rules:
+     * <ul>
+     * <li>{@link CompSudoku#rule_1(Boolean[])}</li>
+     * <li>{@link CompSudoku#rule_2(Boolean[])}</li>
+     * <li>{@link CompSudoku#rule_3(Boolean[])}</li>
+     * </ul>
+     *
+     * @return A {@link CanBeDugList} where all rule-braking
+     * fields are marked false.
+     * @throws ValueFormatException
+     */
+    CanBeDugList getInvalid() throws ValueFormatException {
         CompSudoku su = new CompSudoku(this);
         CanBeDugList ret = new CanBeDugList();
 
         for (int i = 0; i < Sudoku.FIELD_COUNT; i++) {
             CompSudoku dug = su.digClone(i);
             List<Byte> avail = dug.getAvailable();
-            if ( !avail.contains(su.getAtIndex(i)) )
+            if (!avail.contains(su.getAtIndex(i)))
                 ret.setAtIndex(i, false);
         }
         return ret;

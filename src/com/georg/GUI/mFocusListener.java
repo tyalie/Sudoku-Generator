@@ -32,7 +32,7 @@ import java.awt.event.FocusListener;
 /**
  * Created by Georg on 05/06/16.
  * <p>
- * Automatically selectes the whole text
+ * Automatically selects the whole text
  * when the JFormattedTextField is focused.
  */
 class mFocusListener implements FocusListener {
@@ -48,10 +48,11 @@ class mFocusListener implements FocusListener {
 
     private void dumpInfo(FocusEvent e) {
         final Component c = e.getComponent();
-        if(c instanceof JFormattedTextField) {
+        // Selects the text if the focus is gained.
+        if (c instanceof JFormattedTextField) {
             SwingUtilities.invokeLater(() -> {
-                ((JFormattedTextField)c).setText(((JFormattedTextField)c).getText());
-                ((JFormattedTextField)c).selectAll();
+                ((JFormattedTextField) c).setText(((JFormattedTextField) c).getText());
+                ((JFormattedTextField) c).selectAll();
             });
         }
     }

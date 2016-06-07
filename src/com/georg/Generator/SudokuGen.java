@@ -313,8 +313,9 @@ public class SudokuGen {
      * There's no sequence here.
      * All this one does is just simply
      * choosing a free title by random.
-     *
+     * <p>
      * This is sequence 4 on the paper.
+     *
      * @return The next index in the series.
      */
     private int seq4RandomizingGlobally() {
