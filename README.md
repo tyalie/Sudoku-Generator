@@ -13,9 +13,9 @@ The GUI is also easy to use and it is very simple to type in generators into the
 The GUI also finds live during type-in errors in the sudoku and will mark any rule breaking numbers red. This behaviour support the type in of any sudoku.
 
 The generated sudoku (with any method) can saved with different endings. Those are
-<b>
-  - .txt - normal text file
-  - .pdf - a vector, squared pdf file<b>
+
+  - <b>.txt </b>- normal text file
+  - <b>.pdf </b> - a vector, squared pdf file
 
 <pre>
      9 |     3 |     2
@@ -37,7 +37,7 @@ An example txt output.
 An example pdf file with the same sudoku field.
 
 # How to compile
-The program is writen with the Intellij IDEA and uses its standard compiler. Going this way will also automaticly download all depencies. But the code can also be compiled with any another compiler running with JDK version 1.8 . The libraries used in this project are:<br><br>
+The program is writen with the Intellij IDEA and uses its standard compiler, but also its GUI Designer. Using this IDE will also automaticly download all depencies. But the code can also be compiled with any another compiler running with JDK version 1.8, as long as the GUI Designer methods are correctly interpreted. The libraries used in this project are:<br><br>
 
 <pre>de.erichseifert.vectorgraphics2d:VectorGraphics2D:0.10</pre>
 This library is used to create vector PDFs, it extends the Graphics2D class<br>
