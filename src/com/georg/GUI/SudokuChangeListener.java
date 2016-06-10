@@ -60,9 +60,10 @@ class SudokuChangeListener implements ChangeListener {
     public void stateChanged(ChangeEvent e) {
         if (e.getSource() instanceof SudokuSpinner) {
             SudokuSpinner spinner = (SudokuSpinner) e.getSource();
+
             if (orig.getSudoku() != null) {
                 // Change the sudoku field to the current value.
-                orig.getSudoku().setAtIndex(spinner.getID(), ((Integer) spinner.getValue()).byteValue());
+                orig.getSudoku().setAtIndex(spinner.getID(), (byte) ((SudokuNumberSpinner) spinner.getModel()).getNumberVal());
 
                 try {
                     // Generates the list of all invalid fields

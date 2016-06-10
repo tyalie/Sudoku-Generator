@@ -189,12 +189,12 @@ public class UserInterface extends JFrame {
         sudokuField = new JPanel(new GridLayout(Sudoku.FIELD_SIZE, Sudoku.FIELD_SIZE));
 
         sudokuTextAreas = new ArrayList<>();
-        mFocusListener fcsListener = new mFocusListener();
+        SudokuFocusListener fcsListener = new SudokuFocusListener();
         sudoku = new GUISudoku(Level.None);
 
         // Inits the GUI sudoku field
         for (int i = 0; i < Sudoku.FIELD_COUNT; i++) {
-            SpinnerNumberModel model = new SpinnerNumberModel(0, sudoku.getAtIndexN(i), 9, 1);
+            SudokuNumberSpinner model = new SudokuNumberSpinner(sudoku.getAtIndexN(i), 0, 9);
             SudokuSpinner spinner = new SudokuSpinner(model, i);
             ((JSpinner.DefaultEditor) spinner.getEditor()).getTextField().addFocusListener(fcsListener);
             spinner.addChangeListener(new SudokuChangeListener(this));

@@ -204,9 +204,10 @@ public class Sudoku implements Cloneable {
             out += " ";
 
 
-            if (field[i] != NAN)
+            if (field[i] != NAN) {
+                //noinspection PointlessArithmeticExpression,ConstantConditions
                 out += String.format("%x", field[i] + ((MAX_NUM == 16) ? -1 : 0));
-            else
+            } else
                 out += " ";
         }
 

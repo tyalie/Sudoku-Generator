@@ -74,9 +74,9 @@ public class SaveHandler {
     private static void savePDF(String name, Sudoku sudoku) throws IOException {
         PDFGraphics2D mPDF = new PDFGraphics2D(0, 0, getSizeXY(20), getSizeXY(20));
         drawSudoku(mPDF, sudoku, 20);
-        OutputStream stream = IOWriter(name);
+        OutputStream stream = IOOpen(name);
         mPDF.writeTo(stream);
-        stream.flush();
+        IOClose(stream);
     }
 
     /**
@@ -146,11 +146,10 @@ public class SaveHandler {
      * @throws IOException
      */
     private static void saveTXT(String name, Sudoku sudoku) throws IOException {
-        OutputStream file = IOWriter(name);
-        // Sudokus toString is good enough.
+        OutputStream file = IOOpen(name);
+        // Sudokus toString method is good enough.
         file.write(sudoku.toString().getBytes());
-        file.flush();
-        file.close();
+        IOClose(file);
     }
 
     /**
@@ -160,7 +159,12 @@ public class SaveHandler {
      * @return The OutputStream to the file
      * @throws IOException
      */
-    private static OutputStream IOWriter(String file) throws IOException {
+    private static OutputStream IOOpen(String file) throws IOException {
         return new FileOutputStream(file, false);
+    }
+
+    private static void IOClose(OutputStream file) throws IOException {
+        file.flush();
+        file.close();
     }
 }

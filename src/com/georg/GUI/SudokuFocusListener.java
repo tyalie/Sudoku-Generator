@@ -35,7 +35,7 @@ import java.awt.event.FocusListener;
  * Automatically selects the whole text
  * when the JFormattedTextField is focused.
  */
-class mFocusListener implements FocusListener {
+class SudokuFocusListener implements FocusListener {
     @Override
     public void focusGained(FocusEvent e) {
         dumpInfo(e);

@@ -44,6 +44,8 @@ class SudokuSpinner extends JSpinner {
      */
     private int ID;
 
+    private JFormattedTextField textField;
+
     /**
      * The initializer for the spinner
      * view.
@@ -59,23 +61,22 @@ class SudokuSpinner extends JSpinner {
      * @param ID    The index that this tile
      *              should represent.
      */
-    SudokuSpinner(SpinnerNumberModel model, int ID) {
+    SudokuSpinner(SudokuNumberSpinner model, int ID) {
         super(model);
         this.ID = ID;
+
+        /* Deactivates the color of the text-field.
+         * Expect the text nothing of it will be
+         * visible. */
+        textField = ((JSpinner.DefaultEditor) getEditor()).getTextField();
+        textField.setBorder(null);
+        textField.setHorizontalAlignment(JTextField.CENTER);
+        textField.setEditable(true);
 
         /* Updates the color to the original state.
          * Because all spinners are filled with zeros
          * at the start color will be a light gray. */
         updateColor(false);
-
-        /* Deactivates the color of the text-field.
-         * Expect the text nothing of it will be
-         * visible. */
-        JFormattedTextField textField = ((JSpinner.DefaultEditor) getEditor()).getTextField();
-        textField.setOpaque(false);
-        textField.setBackground(new Color(0, 0, 0, 0));
-        textField.setBorder(null);
-        textField.setHorizontalAlignment(JTextField.CENTER);
 
         //                      t l b r
         int[] bordW = new int[]{0, 0, 0, 0};
@@ -92,22 +93,25 @@ class SudokuSpinner extends JSpinner {
         Border border2 = BorderFactory.createMatteBorder(bordW[0], bordW[1], bordW[2], bordW[3], new Color(0, 0, 0));
 
         // To center the text-field perfectly in the center.
-        int cx = (int) (300 / 18f - getFontMetrics(getFont()).stringWidth(Integer.toString(Sudoku.MAX_NUM)) / 1.7);
-        setBorder(BorderFactory.createCompoundBorder(BorderFactory.createCompoundBorder(border2, border1), BorderFactory.createEmptyBorder(0, cx, 0, cx)));
+        int cx = (int) (300 / 18f - getFontMetrics(getFont()).stringWidth(Integer.toString(Sudoku.MAX_NUM)) / 1.5);
+        //int cx = 0;
+        setBorder(BorderFactory.createCompoundBorder(BorderFactory.createCompoundBorder(border2, border1), BorderFactory.createEmptyBorder(0, cx, 0, 0)));
 
         // Hides the up and down buttons.
         setUI(new javax.swing.plaf.basic.BasicSpinnerUI() {
             protected Component createNextButton() {
                 Component c = new JButton();
-                c.setPreferredSize(new Dimension(0, 0));
+                c.setPreferredSize(new Dimension(cx - 1, 0));
                 c.setFocusable(false);
+                c.setVisible(false);
                 return c;
             }
 
             protected Component createPreviousButton() {
                 Component c = new JButton();
-                c.setPreferredSize(new Dimension(0, 0));
+                c.setPreferredSize(new Dimension(cx - 1, 0));
                 c.setFocusable(false);
+                c.setVisible(false);
                 return c;
             }
         });
@@ -143,13 +147,13 @@ class SudokuSpinner extends JSpinner {
      *              If not set it to false.
      */
     void updateColor(boolean inval) {
-        if ((Integer) getValue() == 0)
-            setBackground(Color.LIGHT_GRAY);
+        if (((SudokuNumberSpinner) getModel()).getNumberVal() == 0)
+            setBackground(new Color(223, 223, 223));
         else if (inval)
             setBackground(UserInterface.warnColor);
         else
             setBackground(new Color(0xee, 0xee, 0xee));
-
+        textField.setBackground(getBackground());
     }
 
     /**

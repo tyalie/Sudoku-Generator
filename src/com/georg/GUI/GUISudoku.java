@@ -40,6 +40,7 @@ import java.util.List;
  * Auto transforms 0 into NAN's and v.v.
  */
 class GUISudoku extends Sudoku {
+    @SuppressWarnings("unused")
     GUISudoku(Level level, byte[] field) throws ValueFormatException {
         super(level, field);
     }

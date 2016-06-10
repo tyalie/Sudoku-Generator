@@ -29,11 +29,19 @@ import com.georg.Generator.CompSudoku;
 import com.georg.Generator.StaticGenerator;
 import com.georg.Generator.SudokuSolver;
 
+import javax.swing.*;
 import java.io.IOException;
 
+@SuppressWarnings("unused")
 public class Main {
 
     public static void main(String[] args) throws IOException {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
+
         new UserInterface();
     }
 
